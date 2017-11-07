@@ -6,7 +6,9 @@ public class ObjectInteraction : MonoBehaviour {
 
 	bool holdingObject = false;
 	GameObject heldObject;
-	public GameObject heldObjectPosition;
+	public GameObject heldObjectPosition; //position of the object when it's being held
+	public Vector3 heldObjectOrigin;
+	public ObjectOrigin objectOriginScript;
 	Rigidbody rb;
 
 
@@ -31,10 +33,17 @@ public class ObjectInteraction : MonoBehaviour {
 
 		if (Input.GetMouseButtonDown (0)) { //if left mouse button clicked
 			if (holdingObject == true) {
-				heldObject.transform.SetParent (null);
-				rb.isKinematic = false;
-				rb.AddForce ((Camera.main.transform.forward)*250f);
-				holdingObject = false;
+				heldObject.transform.SetParent (null); //unparent the object from the player
+				if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
+					if (rayHit.collider.gameObject == objectOriginScript.OriginCollider) { //if the player is looking at the object's origin
+						heldObject.transform.position = heldObjectOrigin;
+						holdingObject = false;
+					}
+				} else {
+					rb.isKinematic = false;
+					rb.AddForce ((Camera.main.transform.forward) * 250f); //throw it in the direction of the camera's forward
+					holdingObject = false;
+				}
 				
 			} else {
 				// STEP 4: actually shoot the Raycast
@@ -52,6 +61,10 @@ public class ObjectInteraction : MonoBehaviour {
 	void PickupObj(GameObject currentObject){
 		holdingObject = true;
 		heldObject=currentObject;
+		objectOriginScript = heldObject.GetComponent<ObjectOrigin> ();
+		if (objectOriginScript.atOrigin == true) { //this keeps the origin from being set if you pick up the object from a thrown position
+			heldObjectOrigin = objectOriginScript.ObjectOriginPos;
+		}
 		rb = heldObject.GetComponent<Rigidbody> ();
 		rb.isKinematic = true;
 		heldObject.transform.position = heldObjectPosition.transform.position;
