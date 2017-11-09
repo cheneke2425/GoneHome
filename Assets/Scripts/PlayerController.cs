@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
-	private Transform Player_View;
-	private Transform Player_Camera;
 
 	private Vector3 player_View_Rotation = Vector3.zero;
 	private Vector3 moveDirection = Vector3.zero;
@@ -17,35 +15,28 @@ public class PlayerController : MonoBehaviour {
 
 	private CharacterController charController;
 
-	private bool is_Grounded, is_Moving, is_Crouching;
+	private bool is_Crouching;
 	private bool limitDiagonalSpeed = true;
 
 	public float speedWalk = 1.7f;
 	public float speedCrouch = 2f;
 	public float gravity = 20f;
 
-	public LayerMask groundLayer;
-	private float myRayDistance;
-	private float controllerHeightDefault;
+	public Transform PlayerCamera;
 	private Vector3 cameraPositionDefault;
 	private float cameraHeight;
 
 	public AudioSource footstep;
 	public bool footstepPlaying = false;
 
-	// Use this for initialization
 	void Start () {
-		Player_View = transform.Find ("ViewHandle").transform;
 		charController = GetComponent<CharacterController> ();
 		speed = speedWalk;
-		is_Moving = false;
+		is_Crouching = false;
 
-		myRayDistance = charController.height * 0.5f + charController.radius;
-		controllerHeightDefault = charController.height;
-		cameraPositionDefault = Player_View.localPosition;
+		cameraPositionDefault = PlayerCamera.position;
 	}
 
-	// Update is called once per frame
 	void Update () {
 		PlayerMove ();
 	}
@@ -79,19 +70,13 @@ public class PlayerController : MonoBehaviour {
 			19f * Time.deltaTime); //make sure to normalize it
 
 		player_View_Rotation = Vector3.Lerp (player_View_Rotation, Vector3.zero, 5f * Time.deltaTime);
-		Player_View.localEulerAngles = player_View_Rotation;
+	    PlayerCamera.localEulerAngles = player_View_Rotation;
 
-		if(is_Grounded){
-
-			PlayerCrouch ();
-			moveDirection = new Vector3 (inputX * inputModify, -antiBump, inputY * inputModify);
-			moveDirection = transform.TransformDirection (moveDirection) * speed;
-		}
+		PlayerCrouch ();
+		moveDirection = new Vector3 (inputX * inputModify, -antiBump, inputY * inputModify);
+		moveDirection = transform.TransformDirection (moveDirection) * speed;
 
 		moveDirection.y -= gravity * Time.deltaTime;
-
-		is_Grounded = (charController.Move (moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
-		is_Moving = charController.velocity.magnitude > 0.15f;
 
 		//footstep audio
 		if (charController.velocity == Vector3.zero) {
@@ -104,49 +89,23 @@ public class PlayerController : MonoBehaviour {
 	}
 
 	void PlayerCrouch(){
-		if(Input.GetKeyDown(KeyCode.C)){
+		if(Input.GetKeyDown(KeyCode.C) || Input.GetKeyDown(KeyCode.LeftControl)){
+			Debug.Log("Crouch!");
 			if(!is_Crouching){
+				cameraHeight = cameraPositionDefault.y / 1.5f;
+				//change to smoothDamp
+				PlayerCamera.position = new Vector3 (0, cameraHeight, 0f);
 				is_Crouching = true;
 
-			} else {
-				if (StandUp()){
-					is_Crouching = false;
-				}
+			} else if(is_Crouching) {
+				cameraHeight = cameraPositionDefault.y;
+				PlayerCamera.position = new Vector3 (0, cameraHeight, 0f);
+				is_Crouching = false;
 			}
-
-			StopCoroutine (CameraCrouch ());
-			StartCoroutine (CameraCrouch ());
+				
 		}
 		if(is_Crouching){
 			speed = speedCrouch;
-		}
-	}
-
-	bool StandUp(){
-		Ray rayToGround = new Ray (transform.position, -transform.up);
-		RaycastHit hitGroundData;
-		if(Physics.Raycast(rayToGround, out hitGroundData, groundLayer)){
-			return false;
-		}
-		return true;
-	}
-
-	IEnumerator CameraCrouch(){
-
-		if(is_Crouching){
-			charController.height = controllerHeightDefault / 1.5f;
-			cameraHeight = cameraPositionDefault.y / 1.5f;
-		} else {
-			charController.height = controllerHeightDefault;
-			cameraHeight = cameraPositionDefault.y;
-		}
-
-		while(Mathf.Abs(cameraHeight - Player_View.localPosition.y) > 0.01f){
-			Player_View.localPosition = Vector3.Lerp (Player_View.localPosition,
-				new Vector3 (cameraPositionDefault.x, cameraHeight, cameraPositionDefault.z),
-				11f * Time.deltaTime);
-
-			yield return null;
 		}
 	}
 }
