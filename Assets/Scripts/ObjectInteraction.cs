@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Put this script on the player, no need to set any of the public variables
+
 public class ObjectInteraction : MonoBehaviour {
 
 	bool holdingObject = false;
@@ -23,7 +26,7 @@ public class ObjectInteraction : MonoBehaviour {
 		Ray playerRay = new Ray( Camera.main.transform.position, Camera.main.transform.forward );
 
 		//declare a Raycast max distance
-		float maxRayDistance = 1.5f;
+		float maxRayDistance = 2f;
 
 		// construct a RaycastHit object
 		RaycastHit rayHit = new RaycastHit();
