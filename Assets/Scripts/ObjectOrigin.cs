@@ -2,6 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//Put this script on any interactable object
+//object must have:
+//	interactable tag
+//	rigidbody with both "use gravity" and "kinematic" checked
+//	a seperate cloned collider to put in the OriginCollider slot
+
 public class ObjectOrigin : MonoBehaviour {
 
 	public Vector3 ObjectOriginPos;
