@@ -1,6 +1,6 @@
 //Maya ASCII 2018 scene
-//Name: eraser (4).ma
-//Last modified: Tue, Nov 07, 2017 10:56:07 AM
+//Name: eraser.ma
+//Last modified: Thu, Nov 09, 2017 09:50:53 AM
 //Codeset: UTF-8
 requires maya "2018";
 requires "stereoCamera" "10.0";
@@ -446,19 +446,19 @@ createNode mesh -n "polySurfaceShape2" -p "polySurface1";
 	setAttr ".pd[0]" -type "dataPolyComponent" Index_Data UV 0 ;
 	setAttr ".hfd" -type "dataPolyComponent" Index_Data Face 0 ;
 createNode lightLinker -s -n "lightLinker1";
-	rename -uid "3A8DC25C-3C4B-A4CA-D698-C0B102AFFD0F";
+	rename -uid "BBEA1DD0-5840-14FF-8746-33BA55F42244";
 	setAttr -s 4 ".lnk";
 	setAttr -s 4 ".slnk";
 createNode shapeEditorManager -n "shapeEditorManager";
-	rename -uid "6E5D732C-7F4A-7DB2-7252-61B0BAAB0501";
+	rename -uid "A9D1FDF2-1A4A-0CA5-F5AA-B880ADC89EE9";
 createNode poseInterpolatorManager -n "poseInterpolatorManager";
-	rename -uid "6A547A08-0B45-0435-5BA4-F0981386AB7C";
+	rename -uid "394D1F0A-ED49-3764-9DF5-4BAD2ECB64E3";
 createNode displayLayerManager -n "layerManager";
-	rename -uid "92007C79-BA4D-0886-ED77-7384D381A31C";
+	rename -uid "80C49594-7F49-37B1-AEB4-888159931A5A";
 createNode displayLayer -n "defaultLayer";
 	rename -uid "D8C6BCCC-4855-E72F-9827-F583C13BA7A1";
 createNode renderLayerManager -n "renderLayerManager";
-	rename -uid "D809C061-404D-4D48-5EAF-C1AD09E0C151";
+	rename -uid "77C08BC2-2443-2840-D036-C6A4422B7E4F";
 createNode renderLayer -n "defaultRenderLayer";
 	rename -uid "FF2D8CF0-46DF-D52F-8411-63AFB3325989";
 	setAttr ".g" yes;
@@ -537,7 +537,7 @@ createNode place2dTexture -n "place2dTexture1";
 	rename -uid "1517685C-EC46-EE1F-7339-ADABA245B5BA";
 createNode file -n "file2";
 	rename -uid "890712A7-594A-8AA1-FC1E-E88D86F86B5C";
-	setAttr ".ftn" -type "string" "/Volumes/Kelsey Hu/NYU Fall2017/GAMES-UT 121/GoneHomeAssets/3d models/TextureFiles/SquishMaster.png";
+	setAttr ".ftn" -type "string" "/Users/chenkehu/Desktop/FinalGoneHome/Assets/Models/Textures/SquishMaster.png";
 	setAttr ".cs" -type "string" "sRGB";
 createNode place2dTexture -n "place2dTexture2";
 	rename -uid "86E5795A-324B-F900-6D74-1EA5EDB2C4DB";
@@ -628,16 +628,16 @@ createNode polyTweakUV -n "polyTweakUV2";
 		 0 -0.68343914 0 -0.6810165 0 -0.68626803 0 -0.69059598 0 -0.67999369 0 -0.68660975
 		 0 -0.68682665 0 -0.68845308 0 -0.69110787 0 -0.6878522 0 -0.68928438 0;
 createNode nodeGraphEditorInfo -n "hyperShadePrimaryNodeEditorSavedTabsInfo";
-	rename -uid "26C1DC8A-D449-3F04-F2E7-298A6389D4C2";
+	rename -uid "823464E4-7646-0687-BC80-28BDFC92CD60";
 	setAttr ".tgi[0].tn" -type "string" "Untitled_1";
-	setAttr ".tgi[0].vl" -type "double2" -330.95236780151544 -202.38094433905616 ;
-	setAttr ".tgi[0].vh" -type "double2" 317.85713022663526 209.52380119808169 ;
+	setAttr ".tgi[0].vl" -type "double2" -320.38326253043704 -237.47095455910633 ;
+	setAttr ".tgi[0].vh" -type "double2" 329.61671164088472 243.42333527496089 ;
 	setAttr -s 2 ".tgi[0].ni";
-	setAttr ".tgi[0].ni[0].x" 54.285713195800781;
-	setAttr ".tgi[0].ni[0].y" 72.857139587402344;
+	setAttr ".tgi[0].ni[0].x" -252.85714721679688;
+	setAttr ".tgi[0].ni[0].y" 51.428569793701172;
 	setAttr ".tgi[0].ni[0].nvs" 1923;
-	setAttr ".tgi[0].ni[1].x" -252.85714721679688;
-	setAttr ".tgi[0].ni[1].y" 51.428569793701172;
+	setAttr ".tgi[0].ni[1].x" 54.285713195800781;
+	setAttr ".tgi[0].ni[1].y" 72.857139587402344;
 	setAttr ".tgi[0].ni[1].nvs" 1923;
 select -ne :time1;
 	setAttr ".o" 1;
@@ -749,9 +749,9 @@ connectAttr "groupId1.id" "groupParts1.gi";
 connectAttr "polyAutoProj1.out" "polyTweakUV1.ip";
 connectAttr "polyTweakUV1.out" "polyMapDel1.ip";
 connectAttr "polyMapDel1.out" "polyTweakUV2.ip";
-connectAttr "file2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
+connectAttr "place2dTexture2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[0].dn"
 		;
-connectAttr "place2dTexture2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
+connectAttr "file2.msg" "hyperShadePrimaryNodeEditorSavedTabsInfo.tgi[0].ni[1].dn"
 		;
 connectAttr "lambert2SG.pa" ":renderPartition.st" -na;
 connectAttr "surfaceShader1SG.pa" ":renderPartition.st" -na;
@@ -762,4 +762,5 @@ connectAttr "place2dTexture2.msg" ":defaultRenderUtilityList1.u" -na;
 connectAttr "defaultRenderLayer.msg" ":defaultRenderingList1.r" -na;
 connectAttr "file1.msg" ":defaultTextureList1.tx" -na;
 connectAttr "file2.msg" ":defaultTextureList1.tx" -na;
-// End of eraser (4).ma
+connectAttr "file2.oc" ":internal_standInShader.ic";
+// End of eraser.ma
