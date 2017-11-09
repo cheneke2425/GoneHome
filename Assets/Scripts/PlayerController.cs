@@ -30,6 +30,9 @@ public class PlayerController : MonoBehaviour {
 	private Vector3 cameraPositionDefault;
 	private float cameraHeight;
 
+	public AudioSource footstep;
+	public bool footstepPlaying = false;
+
 	// Use this for initialization
 	void Start () {
 		Player_View = transform.Find ("ViewHandle").transform;
@@ -89,6 +92,15 @@ public class PlayerController : MonoBehaviour {
 
 		is_Grounded = (charController.Move (moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
 		is_Moving = charController.velocity.magnitude > 0.15f;
+
+		//footstep audio
+		if (charController.velocity == Vector3.zero) {
+			footstep.Stop ();
+			footstepPlaying = false;
+		} else if (footstepPlaying == false) {
+			footstep.Play ();
+			footstepPlaying = true;
+		}
 	}
 
 	void PlayerCrouch(){
