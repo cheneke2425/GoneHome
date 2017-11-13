@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 public class UIManager : MonoBehaviour {
 
 	public Transform Menu;
@@ -11,6 +13,9 @@ public class UIManager : MonoBehaviour {
 	public Transform ItemsPage;
 	public Transform MapPage;
 	public Transform JournalsPage;
+
+	public Text UITextBackground;
+	public Text UITextForeground;
 
 	private bool menuOpened = false;
 
@@ -82,6 +87,21 @@ public class UIManager : MonoBehaviour {
 				CloseMenu();
 
 			}
+		}
+
+		if (Player.GetComponent<ObjectInteraction>().hitObject)
+		{
+			UITextBackground.gameObject.SetActive(true);
+			if (Player.GetComponent<ObjectInteraction>().holdingObject)
+			{
+				UITextBackground.text = UITextForeground.text = "Put back";
+			}
+			else {
+				UITextBackground.text = UITextForeground.text = "Pick up";
+			}
+		}
+		else {
+			UITextBackground.gameObject.SetActive(false);
 		}
 	}
 
