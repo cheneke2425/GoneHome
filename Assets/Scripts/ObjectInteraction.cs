@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//Put this script on the player, no need to set any of the public variables
+
 public class ObjectInteraction : MonoBehaviour {
 
 	public bool hitObject = false;
@@ -24,7 +27,7 @@ public class ObjectInteraction : MonoBehaviour {
 		Ray playerRay = new Ray( Camera.main.transform.position, Camera.main.transform.forward );
 
 		//declare a Raycast max distance
-		float maxRayDistance = 1.5f;
+		float maxRayDistance = 2f;
 
 		// construct a RaycastHit object
 		RaycastHit rayHit = new RaycastHit();
@@ -46,7 +49,12 @@ public class ObjectInteraction : MonoBehaviour {
 				heldObject.transform.SetParent (null); //unparent the object from the player
 				if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
 					if (rayHit.collider.gameObject == objectOriginScript.OriginCollider) { //if the player is looking at the object's origin
+						Debug.Log("Looking at origin");
 						heldObject.transform.position = heldObjectOrigin;
+						holdingObject = false;
+					} else {
+						rb.isKinematic = false;
+						rb.AddForce ((Camera.main.transform.forward) * 250f); //throw it in the direction of the camera's forward
 						holdingObject = false;
 					}
 				} else {
