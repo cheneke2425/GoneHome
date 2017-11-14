@@ -94,12 +94,13 @@ public class PlayerController : MonoBehaviour {
 			if(!is_Crouching){
 				cameraHeight = cameraPositionDefault.y / 1.5f;
 				//change to smoothDamp
-				PlayerCamera.position = new Vector3 (0, cameraHeight, 0f);
+				//PlayerCamera.position = new Vector3 (0, cameraHeight, 0f);
+				//PlayerCamera.position = Vector3.MoveTowards(PlayerCamera.position, changetoCamPos, Time.deltaTime);
 				is_Crouching = true;
 
 			} else if(is_Crouching) {
 				cameraHeight = cameraPositionDefault.y;
-				PlayerCamera.position = new Vector3 (0, cameraHeight, 0f);
+				//PlayerCamera.position = new Vector3 (0, cameraHeight, 0f);
 				is_Crouching = false;
 			}
 				
