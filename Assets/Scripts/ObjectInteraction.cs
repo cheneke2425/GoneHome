@@ -7,7 +7,8 @@ using UnityEngine;
 
 public class ObjectInteraction : MonoBehaviour {
 
-	bool holdingObject = false;
+	public bool hitObject = false;
+	public bool holdingObject = false;
 	GameObject heldObject;
 	public GameObject heldObjectPosition; //position of the object when it's being held
 	public Vector3 heldObjectOrigin;
@@ -33,6 +34,15 @@ public class ObjectInteraction : MonoBehaviour {
 
 		// STEP 3: visualize the Raycast
 		Debug.DrawRay( playerRay.origin, playerRay.direction * maxRayDistance, Color.magenta );
+
+		if (Physics.Raycast(playerRay, out rayHit, maxRayDistance))
+		{
+			hitObject = true;
+
+		}
+		else {
+			hitObject = false;
+		}
 
 		if (Input.GetMouseButtonDown (0)) { //if left mouse button clicked
 			if (holdingObject == true) {
