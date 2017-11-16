@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LightSwitch : MonoBehaviour {
-	public GameObject lamp;
-	private bool on = false;
 
-	//put the stuff so the UI text only shows up when you're looking at it
-	//this is probably wrong?
-	void OnTriggerStay(Collider plyr) {
-		if (plyr.tag == "Player" && Input.GetMouseButton(0) && !on)
+
+public class LightSwitch : MonoBehaviour {
+	public ObjectInteraction objectInteraction;
+	public GameObject light;
+	public bool on = false;
+
+
+
+	void Update() {
+		if (ObjectInteraction.clickedLamp)
 		{
-			lamp.SetActive (true);
+		if (!on)
+		{
+			light.SetActive (true);
 			on = true;
 		}
-		else if (plyr.tag == "Player" && Input.GetMouseButton(0) && on)
+		else if (on)
 		{
-			lamp.SetActive (false);
+			light.SetActive (false);
 			on = false;
 		}
 	}
+}
 }
