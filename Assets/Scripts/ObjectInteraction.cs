@@ -7,6 +7,8 @@ using UnityEngine;
 
 public class ObjectInteraction : MonoBehaviour {
 
+	public bool hitObject;
+	public bool hitLamp;
 	public GameObject heldObject;
 	public GameObject heldObjectPosition; //position of the object when it's being held
 	public GameObject examineObjectPosition; //position of the object when it's being examined
@@ -14,16 +16,20 @@ public class ObjectInteraction : MonoBehaviour {
 	public Vector3 heldObjectOriginRot;
 	public ObjectOrigin objectOriginScript;
 	Rigidbody rb;
-	public PlayerController thisPlayerController;
+	public OriginalPlayerController thisOriginalPlayerController;
 	public CameraController thisCameraControllerPlayer;
 	public CameraController thisCameraControllerCamera;
+
+	//bools for UI Manager
+	public bool lookingAtOrigin=false;
+	public bool lookingAtInteractiveObject=false;
 
 	float mouseSensitivity = 50f;
 
 
 	// Use this for initialization
 	void Start () {
-		thisPlayerController = this.gameObject.GetComponent<PlayerController> ();
+		thisOriginalPlayerController = this.gameObject.GetComponent<OriginalPlayerController> ();
 		thisCameraControllerPlayer = this.gameObject.GetComponent<CameraController> ();
 	}
 	
@@ -50,6 +56,24 @@ public class ObjectInteraction : MonoBehaviour {
 			hitObject = false;
 		}
 
+//RAYCAST CHECKER FOR UI
+		if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
+			if (heldObject != null) {
+				if (rayHit.collider.gameObject == objectOriginScript.OriginCollider) { //if the player is looking at the object's origin
+					lookingAtOrigin = true;
+				} else {
+					lookingAtOrigin = false;
+				}
+			} else //if (heldObject == null) 
+			{
+				if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
+					lookingAtInteractiveObject = true;
+				} else {
+					lookingAtInteractiveObject = false;
+				}
+			}
+		}
+
 		if (Input.GetMouseButtonDown (0)) { //if left mouse button clicked
 			if (heldObject != null) { //if there's something in the heldObject slot
 				heldObject.transform.SetParent (null); //unparent the object from the player
@@ -70,11 +94,13 @@ public class ObjectInteraction : MonoBehaviour {
 					heldObject = null; //clear the heldObject slot
 				}
 				
-			} else {
-				// STEP 4: actually shoot the Raycast
+			} else { //if there's no object in the heldObject slot
 				if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
 //PICKUP OBJECT
 					if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
+						if(rayHit.collider.gameObject.name==("Lamp")){
+							
+							}
 						PickupObj (rayHit.collider.gameObject); //run pickup function
 					}
 				} else { // Raycast failed, so there's no object in raycast
@@ -88,7 +114,7 @@ public class ObjectInteraction : MonoBehaviour {
 
 			if (Input.GetMouseButton (1) || Input.GetKey (KeyCode.LeftShift)) { //if right mouse or left shift held
 			
-				thisPlayerController.enabled = false;
+				thisOriginalPlayerController.enabled = false;
 				thisCameraControllerPlayer.enabled = false;
 				thisCameraControllerCamera.enabled = false;
 				heldObject.transform.position = examineObjectPosition.transform.position;
@@ -98,7 +124,7 @@ public class ObjectInteraction : MonoBehaviour {
 
 				heldObject.transform.Rotate (-mouseY, mouseX, 0f);
 			} else {
-				thisPlayerController.enabled = true;
+				thisOriginalPlayerController.enabled = true;
 				thisCameraControllerPlayer.enabled = true;
 				thisCameraControllerCamera.enabled = true;
 				heldObject.transform.position = heldObjectPosition.transform.position;
