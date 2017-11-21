@@ -5,6 +5,7 @@ using UnityEngine;
 //Put this script on any interactable object
 //object must have:
 //	interactable tag
+//  collider
 //	rigidbody with both "use gravity" and "kinematic" checked
 //	a seperate cloned collider to put in the OriginCollider slot
 
