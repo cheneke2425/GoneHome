@@ -11,12 +11,14 @@ using UnityEngine;
 public class ObjectOrigin : MonoBehaviour {
 
 	public Vector3 ObjectOriginPos;
+	public Vector3 ObjectOriginRot;
 	public bool atOrigin=true;
 	public GameObject OriginCollider;
 
 	// Use this for initialization
 	void Start () {
 		ObjectOriginPos = this.transform.position;
+		ObjectOriginRot = this.transform.eulerAngles;
 	}
 	
 	// Update is called once per frame

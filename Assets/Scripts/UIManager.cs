@@ -17,6 +17,8 @@ public class UIManager : MonoBehaviour {
 	public Text UITextBackground;
 	public Text UITextForeground;
 
+	public ObjectInteraction objectInteraction;
+
 	private bool menuOpened = false;
 
 	// Use this for initialization
@@ -24,6 +26,8 @@ public class UIManager : MonoBehaviour {
 
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
+
+		objectInteraction = Player.gameObject.GetComponent<ObjectInteraction> ();
 		
 	}
 
@@ -89,15 +93,26 @@ public class UIManager : MonoBehaviour {
 			}
 		}
 
-		if (Player.GetComponent<ObjectInteraction>().hitObject)
+		if (objectInteraction.hitObject)
 		{
-			UITextBackground.gameObject.SetActive(true);
-			if (Player.GetComponent<ObjectInteraction>().holdingObject)
-			{
-				UITextBackground.text = UITextForeground.text = "Put back";
+			if (objectInteraction.heldObject != null) {  //if holding an object
+				if (objectInteraction.lookingAtOrigin == true) {
+					UITextBackground.gameObject.SetActive(true);
+					UITextBackground.text = UITextForeground.text = "Put back " + objectInteraction.ObjectName;
+				}else {
+					UITextBackground.gameObject.SetActive(false);
+				}
 			}
-			else {
-				UITextBackground.text = UITextForeground.text = "Pick up";
+			if (objectInteraction.heldObject == null) { //if not holding an object
+				if (objectInteraction.lookingAtInteractiveObject == true) {
+					UITextBackground.gameObject.SetActive(true);
+					UITextBackground.text = UITextForeground.text = "Pick up " + objectInteraction.ObjectName;
+				}else if (objectInteraction.lookingAtInteractive2D == true) {
+					UITextBackground.gameObject.SetActive(true);
+					UITextBackground.text = UITextForeground.text = "Read " + objectInteraction.ObjectName;
+				} else {
+					UITextBackground.gameObject.SetActive(false);
+				}
 			}
 		}
 		else {

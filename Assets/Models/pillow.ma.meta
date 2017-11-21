@@ -1,31 +1,27 @@
 fileFormatVersion: 2
-guid: 351580ec156fb480b896c816fb7ad71d
-timeCreated: 1510521953
+guid: 755744c85fb794d05aac4121d56bdbd6
+timeCreated: 1511263665
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: group24
-    100004: pasted__group21
-    100006: pasted__pasted__group20
-    100008: pasted__pasted__pasted__group2
-    100010: pasted__pasted__pasted__pasted__group1
-    100012: pasted__pasted__pasted__pasted__pasted__group
-    100014: pCube2
-    400000: //RootNode
-    400002: group24
-    400004: pasted__group21
-    400006: pasted__pasted__group20
-    400008: pasted__pasted__pasted__group2
-    400010: pasted__pasted__pasted__pasted__group1
-    400012: pasted__pasted__pasted__pasted__pasted__group
-    400014: pCube2
-    2300000: pCube2
+    100000: nCloth1
+    100002: nCloth2
+    100004: nucleus1
+    100006: pCube1
+    100008: //RootNode
+    100010: polySurface5
+    400000: nCloth1
+    400002: nCloth2
+    400004: nucleus1
+    400006: pCube1
+    400008: //RootNode
+    400010: polySurface5
+    2300000: polySurface5
     2300002: //RootNode
-    3300000: pCube2
+    3300000: polySurface5
     3300002: //RootNode
-    4300000: pCube2
+    4300000: polySurface5
     9500000: //RootNode
   materials:
     importMaterials: 1
