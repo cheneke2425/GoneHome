@@ -99,6 +99,7 @@ public class OriginalPlayerController : MonoBehaviour {
 
 			// replace this with "charController.isGrounded" https://docs.unity3d.com/ScriptReference/CharacterController-isGrounded.html
 			is_Grounded = (charController.Move (moveDirection * Time.deltaTime) & CollisionFlags.Below) != 0;
+			//is_Grounded = charController.isGrounded;
 			is_Moving = charController.velocity.magnitude > 0.15f;
 
 			//footstep audio
