@@ -6,22 +6,22 @@ using UnityEngine;
 
 public class LightSwitch : MonoBehaviour {
 	public ObjectInteraction objectInteraction;
-	public GameObject light;
+	public GameObject lightbulb;
 	public bool on = false;
 
 
 
 	void Update() {
-		if (ObjectInteraction.clickedLamp)
+		if (objectInteraction.clickedLamp)
 		{
 		if (!on)
 		{
-			light.SetActive (true);
+			lightbulb.SetActive (true);
 			on = true;
 		}
 		else if (on)
 		{
-			light.SetActive (false);
+			lightbulb.SetActive (false);
 			on = false;
 		}
 	}
