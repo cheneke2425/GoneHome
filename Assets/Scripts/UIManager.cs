@@ -98,7 +98,7 @@ public class UIManager : MonoBehaviour {
 			if (objectInteraction.heldObject != null) {  //if holding an object
 				if (objectInteraction.lookingAtOrigin == true) {
 					UITextBackground.gameObject.SetActive(true);
-					UITextBackground.text = UITextForeground.text = "Put back";
+					UITextBackground.text = UITextForeground.text = "Put back " + objectInteraction.ObjectName;
 				}else {
 					UITextBackground.gameObject.SetActive(false);
 				}
@@ -106,8 +106,11 @@ public class UIManager : MonoBehaviour {
 			if (objectInteraction.heldObject == null) { //if not holding an object
 				if (objectInteraction.lookingAtInteractiveObject == true) {
 					UITextBackground.gameObject.SetActive(true);
-					UITextBackground.text = UITextForeground.text = "Pick up";
-				}else {
+					UITextBackground.text = UITextForeground.text = "Pick up " + objectInteraction.ObjectName;
+				}else if (objectInteraction.lookingAtInteractive2D == true) {
+					UITextBackground.gameObject.SetActive(true);
+					UITextBackground.text = UITextForeground.text = "Read " + objectInteraction.ObjectName;
+				} else {
 					UITextBackground.gameObject.SetActive(false);
 				}
 			}
