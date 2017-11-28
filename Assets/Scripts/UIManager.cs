@@ -120,7 +120,7 @@ public class UIManager : MonoBehaviour {
 		}
 	}
 
-	void OpenMenu()
+	public void OpenMenu()
 	{
 		Menu.gameObject.SetActive(true);
 		Time.timeScale = 0; //Pause time in the game.
@@ -133,7 +133,7 @@ public class UIManager : MonoBehaviour {
 		menuOpened = true;
 	}
 
-	void CloseMenu()
+	public void CloseMenu()
 	{
 		ItemsPage.gameObject.SetActive(false);
 		MapPage.gameObject.SetActive(false);

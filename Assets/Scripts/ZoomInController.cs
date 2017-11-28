@@ -18,7 +18,7 @@ public class ZoomInController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift) || Input.GetMouseButton(1)){
+		if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)){
 			Debug.Log("ZOOM INNNNNNN");
 			SmoothCamZoom (zoomInFieldOfView, defaultFieldOfView);
 		} else {
