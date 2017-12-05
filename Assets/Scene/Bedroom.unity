@@ -2893,6 +2893,10 @@ Prefab:
       propertyPath: coolSchmool
       value: 
       objectReference: {fileID: 840241921}
+    - target: {fileID: 4804458706636914, guid: ffdd263cec2a3dd4da7453efba884497, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.576
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114128635262483050, guid: ffdd263cec2a3dd4da7453efba884497, type: 2}
     - {fileID: 114062820711966572, guid: ffdd263cec2a3dd4da7453efba884497, type: 2}
