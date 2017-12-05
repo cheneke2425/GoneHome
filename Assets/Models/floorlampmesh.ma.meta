@@ -1,76 +1,15 @@
 fileFormatVersion: 2
-guid: bda15d6b1719fd24599d96a0208daedd
-timeCreated: 1511882444
+guid: 1e3eeef3fef8f4937a0da353218eae9e
+timeCreated: 1512471991
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
-    100000: front1
-    100002: group
-    100004: group1
-    100006: group2
-    100008: group3
-    100010: pasted__group
-    100012: pasted__group1
-    100014: pasted__pasted__group
-    100016: pasted__pasted__pasted__pCube2
-    100018: pasted__pasted__pCube2
-    100020: pasted__pCube2
-    100022: pasted__polySurface1
-    100024: pCube1
-    100026: pCube2
-    100028: pCube3
-    100030: pCube4
-    100032: pCube6
-    100034: pCube7
-    100036: polySurface1
-    100038: transform1
-    100040: transform10
-    100042: transform11
-    100044: transform2
-    100046: transform3
-    100048: transform4
-    100050: transform5
-    100052: transform6
-    100054: transform7
-    100056: transform8
-    100058: transform9
-    100060: //RootNode
-    400000: front1
-    400002: group
-    400004: group1
-    400006: group2
-    400008: group3
-    400010: pasted__group
-    400012: pasted__group1
-    400014: pasted__pasted__group
-    400016: pasted__pasted__pasted__pCube2
-    400018: pasted__pasted__pCube2
-    400020: pasted__pCube2
-    400022: pasted__polySurface1
-    400024: pCube1
-    400026: pCube2
-    400028: pCube3
-    400030: pCube4
-    400032: pCube6
-    400034: pCube7
-    400036: polySurface1
-    400038: transform1
-    400040: transform10
-    400042: transform11
-    400044: transform2
-    400046: transform3
-    400048: transform4
-    400050: transform5
-    400052: transform6
-    400054: transform7
-    400056: transform8
-    400058: transform9
-    400060: //RootNode
-    2300000: front1
-    3300000: front1
-    4300000: front1
-    7400000: Take 001
+    100000: //RootNode
+    400000: //RootNode
+    2300000: //RootNode
+    3300000: //RootNode
+    4300000: Lamp1
     9500000: //RootNode
   materials:
     importMaterials: 1

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InteractiveObject
   - Interactive2D
+  - Light
   layers:
   - Default
   - TransparentFX
