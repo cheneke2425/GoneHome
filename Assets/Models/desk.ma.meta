@@ -156,7 +156,9 @@ ModelImporter:
     400146: transform8
     400148: transform9
     2300000: pCube2
+    2300002: //RootNode
     3300000: pCube2
+    3300002: //RootNode
     4300000: pCube2
     9500000: //RootNode
   materials:
