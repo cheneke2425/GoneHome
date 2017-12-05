@@ -10,6 +10,7 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool hitObject;
 	public bool clickedLamp=false;
 	public bool examining2D = false;
+	public Renderer currentObjRenderer;
 	public GameObject heldObject;
 	public GameObject heldObjectPosition; //position of the object when it's being held
 	public GameObject examineObjectPosition; //position of the object when it's being examined
@@ -85,10 +86,19 @@ public class ObjectInteraction : MonoBehaviour {
 				if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
 					lookingAtInteractiveObject = true;
 					ObjectName = rayHit.collider.gameObject.name;
-				} else if (rayHit.collider.gameObject.CompareTag ("Interactive2D")) {
+					currentObjRenderer = rayHit.collider.gameObject.GetComponentInChildren<Renderer> ();
+					currentObjRenderer.material.SetFloat ("_Metallic", 1f);
+					currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+				}
+				else if (rayHit.collider.gameObject.CompareTag("Interactive2D"))
+				{
 					lookingAtInteractive2D = true;
 					ObjectName = rayHit.collider.gameObject.name;
-				} else if (rayHit.collider.gameObject.CompareTag ("Light")) {
+					currentObjRenderer = rayHit.collider.gameObject.GetComponentInChildren<Renderer> ();
+					currentObjRenderer.material.SetFloat ("_Metallic", 1f);
+					currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+				}
+				else if (rayHit.collider.gameObject.CompareTag("Light")){
 					lookingAtLight = true;
 					ObjectName = rayHit.collider.gameObject.name;
 					lightInteracted = rayHit.collider.gameObject;
@@ -100,7 +110,8 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtInteractiveObject = false;
 					lookingAtInteractive2D = false;
 					lookingAtLight = false;
-					lookingAtLocker = false;
+					currentObjRenderer.material.SetFloat ("_Metallic", 0f);
+					currentObjRenderer.material.SetFloat ("_Glossiness", 1f);
 				}
 			}
 		}
