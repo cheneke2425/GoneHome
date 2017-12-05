@@ -7,6 +7,7 @@ TagManager:
   - InteractiveObject
   - Interactive2D
   - Light
+  - Locker
   layers:
   - Default
   - TransparentFX
