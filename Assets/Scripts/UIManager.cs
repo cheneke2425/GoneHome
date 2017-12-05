@@ -104,13 +104,29 @@ public class UIManager : MonoBehaviour {
 				}
 			}
 			if (objectInteraction.heldObject == null) { //if not holding an object
-				if (objectInteraction.lookingAtInteractiveObject == true) {
+				if (objectInteraction.lookingAtInteractiveObject == true)
+				{
 					UITextBackground.gameObject.SetActive(true);
-					UITextBackground.text = UITextForeground.text = "Pick up " + objectInteraction.ObjectName;
-				}else if (objectInteraction.lookingAtInteractive2D == true) {
+					UITextBackground.text = UITextForeground.text = "Grab " + objectInteraction.ObjectName;
+				}
+				else if (objectInteraction.lookingAtInteractive2D == true)
+				{
 					UITextBackground.gameObject.SetActive(true);
 					UITextBackground.text = UITextForeground.text = "Read " + objectInteraction.ObjectName;
-				} else {
+				}
+				else if (objectInteraction.lookingAtLight == true){
+					if (objectInteraction.lightInteracted.GetComponent<LightSwitch>().lightOn)
+					{
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Turn Off " + objectInteraction.ObjectName;
+					}
+					else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Turn On " + objectInteraction.ObjectName;
+					}
+
+				}
+				else {
 					UITextBackground.gameObject.SetActive(false);
 				}
 			}
@@ -126,6 +142,7 @@ public class UIManager : MonoBehaviour {
 		Time.timeScale = 0; //Pause time in the game.
 		Player.gameObject.GetComponent<CameraController>().enabled = false;
 		Camera.gameObject.GetComponent<CameraController>().enabled = false;
+		Player.gameObject.GetComponent<ObjectInteraction>().enabled = false;
 
 		Cursor.lockState = CursorLockMode.None;
 		Cursor.visible = true;
@@ -144,6 +161,7 @@ public class UIManager : MonoBehaviour {
 		Time.timeScale = 1; //Resume time in the game.
 		Player.gameObject.GetComponent<CameraController>().enabled = true;
 		Camera.gameObject.GetComponent<CameraController>().enabled = true;
+		Player.gameObject.GetComponent<ObjectInteraction>().enabled = true;
 
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;

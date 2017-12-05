@@ -61,6 +61,8 @@ ModelImporter:
     100106: pCylinder4
     100108: pSphere1
     100110: pCylinder6
+    100112: Lamp
+    100114: LampTop
     400000: //RootNode
     400002: group
     400004: group1
@@ -117,24 +119,32 @@ ModelImporter:
     400106: pCylinder4
     400108: pSphere1
     400110: pCylinder6
+    400112: Lamp
+    400114: LampTop
     2300000: pCylinder1
     2300002: pCylinder2
     2300004: pCylinder3
     2300006: pCylinder4
     2300008: pSphere1
     2300010: pCylinder6
+    2300012: Lamp
+    2300014: LampTop
     3300000: pCylinder1
     3300002: pCylinder2
     3300004: pCylinder3
     3300006: pCylinder4
     3300008: pSphere1
     3300010: pCylinder6
+    3300012: Lamp
+    3300014: LampTop
     4300000: pCylinder1
     4300002: pCylinder2
     4300004: pSphere1
     4300006: pCylinder3
     4300008: pCylinder4
     4300010: pCylinder6
+    4300012: LampTop
+    4300014: Lamp
     9500000: //RootNode
   materials:
     importMaterials: 1

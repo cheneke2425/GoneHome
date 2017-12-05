@@ -25,7 +25,10 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool lookingAtOrigin=false;
 	public bool lookingAtInteractiveObject=false;
 	public bool lookingAtInteractive2D=false;
+	public bool lookingAtLight = false;
 	public string ObjectName;
+
+	public GameObject lightInteracted;
 
 	float mouseSensitivity = 50f;
 
@@ -75,15 +78,25 @@ public class ObjectInteraction : MonoBehaviour {
 				}
 			} else //if (heldObject == null) 
 			{
-				if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
+				if (rayHit.collider.gameObject.CompareTag("InteractiveObject"))
+				{ //if true == the hit object has a tag of "InteractiveObject"
 					lookingAtInteractiveObject = true;
 					ObjectName = rayHit.collider.gameObject.name;
-				} else if (rayHit.collider.gameObject.CompareTag ("Interactive2D")) {
+				}
+				else if (rayHit.collider.gameObject.CompareTag("Interactive2D"))
+				{
 					lookingAtInteractive2D = true;
 					ObjectName = rayHit.collider.gameObject.name;
-				} else {
+				}
+				else if (rayHit.collider.gameObject.CompareTag("Light")){
+					lookingAtLight = true;
+					ObjectName = rayHit.collider.gameObject.name;
+					lightInteracted = rayHit.collider.gameObject;
+				}
+				else {
 					lookingAtInteractiveObject = false;
 					lookingAtInteractive2D = false;
+					lookingAtLight = false;
 				}
 			}
 		}
@@ -136,13 +149,13 @@ public class ObjectInteraction : MonoBehaviour {
 				
 			} else { //if there's no object in the heldObject slot and left mouse button clicked
 				if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
-//PICKUP OBJECT
-					if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
-						if (rayHit.collider.gameObject.name == ("Lamp")) {
-							clickedLamp = true;
-						} else {
-							PickupObj (rayHit.collider.gameObject); //run pickup function
-						}
+																			   //PICKUP OBJECT
+					if (rayHit.collider.gameObject.CompareTag("InteractiveObject"))
+					{ //if true == the hit object has a tag of "InteractiveObject"
+						PickupObj(rayHit.collider.gameObject);
+					}
+					else if (rayHit.collider.gameObject.CompareTag("Light")){//if true == the hit object has a tag of "Light""
+						clickedLamp = true;
 					}
 				}
 			}
