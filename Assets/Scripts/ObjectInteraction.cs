@@ -10,6 +10,8 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool hitObject;
 	public bool clickedLamp=false;
 	public bool examining2D = false;
+	public bool cassetteInStereo = false;
+	public GameObject cassette;
 	public GameObject heldObject;
 	public GameObject heldObjectPosition; //position of the object when it's being held
 	public GameObject examineObjectPosition; //position of the object when it's being examined
@@ -65,7 +67,7 @@ public class ObjectInteraction : MonoBehaviour {
 //RAYCAST CHECKER FOR UI
 		if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
 			if (heldObject != null) {
-				if(heldObject.tag=="Interactive2D"){
+				if (heldObject.tag == "Interactive2D") {
 					//do nothing
 				}
 				else if (rayHit.collider.gameObject == objectOriginScript.OriginCollider) { //if the player is looking at the object's origin
@@ -118,6 +120,13 @@ public class ObjectInteraction : MonoBehaviour {
 			} else if (heldObject != null) { //if there's something in the heldObject slot
 				heldObject.transform.SetParent (null); //unparent the object from the player
 				if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
+//PUT TAPE IN STEREO
+					if (heldObject.name == "Cassette" && rayHit.collider.gameObject.name == "stereo") {
+						cassette = heldObject;
+						heldObject.transform.position = rayHit.collider.gameObject.transform.position;
+						cassetteInStereo = true;
+						heldObject = null; //clear the heldObject slot
+					}
 //PUTBACK OBJECT
 					if (rayHit.collider.gameObject == objectOriginScript.OriginCollider) { //if the player is looking at the object's origin
 						heldObject.transform.position = heldObjectOriginPos;
@@ -137,6 +146,10 @@ public class ObjectInteraction : MonoBehaviour {
 			} else { //if there's no object in the heldObject slot and left mouse button clicked
 				if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
 //PICKUP OBJECT
+					if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
+						PickupObj (cassette);
+						cassetteInStereo = false;
+					}
 					if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
 						if (rayHit.collider.gameObject.name == ("Lamp")) {
 							clickedLamp = true;
