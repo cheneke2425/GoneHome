@@ -17,8 +17,18 @@ public class LightSwitch : MonoBehaviour {
 		if (objectInteraction.clickedLamp) {
 			if (lightbulb.enabled == true) {
 				lightbulb.enabled = false;
+
 			} else if (lightbulb.enabled == false) {
 				lightbulb.enabled = true;
+			}
+
+			if (gameObject.GetComponent<Renderer>().material.IsKeywordEnabled("_EMISSION"))
+			{
+				gameObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+			}
+			else {
+				gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+
 			}
 		}
 	}
