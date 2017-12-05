@@ -10,8 +10,6 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool hitObject;
 	public bool clickedLamp=false;
 	public bool examining2D = false;
-	public bool cassetteInStereo = false;
-	public GameObject cassette;
 	public GameObject heldObject;
 	public GameObject heldObjectPosition; //position of the object when it's being held
 	public GameObject examineObjectPosition; //position of the object when it's being examined
@@ -22,6 +20,11 @@ public class ObjectInteraction : MonoBehaviour {
 	public OriginalPlayerController thisOriginalPlayerController;
 	public CameraController thisCameraControllerPlayer;
 	public CameraController thisCameraControllerCamera;
+
+	//cassette variables
+	public AudioSource coolSchmool;
+	public bool cassetteInStereo = false;
+	public GameObject cassette;
 
 	//bools for UI Manager
 	public bool lookingAtOrigin=false;
@@ -138,6 +141,7 @@ public class ObjectInteraction : MonoBehaviour {
 						cassette = heldObject;
 						heldObject.transform.position = rayHit.collider.gameObject.transform.position;
 						cassetteInStereo = true;
+						coolSchmool.Play ();
 						heldObject = null; //clear the heldObject slot
 					}
 //PUTBACK OBJECT
@@ -162,13 +166,13 @@ public class ObjectInteraction : MonoBehaviour {
 					if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
 						PickupObj (cassette);
 						cassetteInStereo = false;
+						coolSchmool.Stop ();
 					}
 					if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
-						if (rayHit.collider.gameObject.name == ("Lamp")) {
-							clickedLamp = true;
-						} else {
-							PickupObj (rayHit.collider.gameObject); //run pickup function
-						}
+						PickupObj (rayHit.collider.gameObject); //run pickup function
+					}
+					else if (rayHit.collider.gameObject.CompareTag("Light")) {
+						clickedLamp = true;
 					}
 				}
 			}
