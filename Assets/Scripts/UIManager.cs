@@ -104,13 +104,29 @@ public class UIManager : MonoBehaviour {
 				}
 			}
 			if (objectInteraction.heldObject == null) { //if not holding an object
-				if (objectInteraction.lookingAtInteractiveObject == true) {
+				if (objectInteraction.lookingAtInteractiveObject == true)
+				{
 					UITextBackground.gameObject.SetActive(true);
 					UITextBackground.text = UITextForeground.text = "Grab " + objectInteraction.ObjectName;
-				}else if (objectInteraction.lookingAtInteractive2D == true) {
+				}
+				else if (objectInteraction.lookingAtInteractive2D == true)
+				{
 					UITextBackground.gameObject.SetActive(true);
 					UITextBackground.text = UITextForeground.text = "Read " + objectInteraction.ObjectName;
-				} else {
+				}
+				else if (objectInteraction.lookingAtLight == true){
+					if (objectInteraction.lightInteracted.GetComponent<LightSwitch>().lightOn)
+					{
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Turn Off " + objectInteraction.ObjectName;
+					}
+					else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Turn On " + objectInteraction.ObjectName;
+					}
+
+				}
+				else {
 					UITextBackground.gameObject.SetActive(false);
 				}
 			}
