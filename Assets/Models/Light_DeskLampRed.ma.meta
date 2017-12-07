@@ -27,6 +27,9 @@ ModelImporter:
     100038: pSphere2
     100040: transform1
     100042: transform2
+    100044: LightBulb
+    100046: Shell
+    100048: ShouldBePaintedBlack
     400000: //RootNode
     400002: group
     400004: group1
@@ -49,6 +52,9 @@ ModelImporter:
     400038: pSphere2
     400040: transform1
     400042: transform2
+    400044: LightBulb
+    400046: Shell
+    400048: ShouldBePaintedBlack
     2300000: pasted__pCube2
     2300002: pasted__pCylinder6
     2300004: pasted__pCylinder6 1
@@ -61,6 +67,10 @@ ModelImporter:
     2300018: pCylinder7
     2300020: pSphere1
     2300022: pSphere2
+    2300024: LightBulb
+    2300026: Shell
+    2300028: ShouldBePaintedBlack
+    2300030: //RootNode
     3300000: pasted__pCube2
     3300002: pasted__pCylinder6
     3300004: pasted__pCylinder6 1
@@ -73,6 +83,10 @@ ModelImporter:
     3300018: pCylinder7
     3300020: pSphere1
     3300022: pSphere2
+    3300024: LightBulb
+    3300026: Shell
+    3300028: ShouldBePaintedBlack
+    3300030: //RootNode
     4300000: pCylinder2
     4300002: pSphere1
     4300004: pCylinder5
@@ -85,6 +99,10 @@ ModelImporter:
     4300018: pCube2
     4300020: pasted__pCube2
     4300022: pasted__pCylinder7
+    4300024: LightBulb
+    4300026: Shell
+    4300028: ShouldBePaintedBlack
+    4300030: Lamp
     9500000: //RootNode
   materials:
     importMaterials: 1
