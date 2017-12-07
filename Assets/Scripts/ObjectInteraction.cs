@@ -89,16 +89,20 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtInteractiveObject = true;
 					ObjectName = rayHit.collider.gameObject.name;
 					currentObjRenderer = rayHit.collider.gameObject.GetComponentInChildren<Renderer> ();
-					currentObjRenderer.material.SetFloat ("_Metallic", 1f);
-					currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+					if (currentObjRenderer != null) {
+						currentObjRenderer.material.SetFloat ("_Metallic", 1f);
+						currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+					}
 				}
 				else if (rayHit.collider.gameObject.CompareTag("Interactive2D"))
 				{
 					lookingAtInteractive2D = true;
 					ObjectName = rayHit.collider.gameObject.name;
 					currentObjRenderer = rayHit.collider.gameObject.GetComponentInChildren<Renderer> ();
-					currentObjRenderer.material.SetFloat ("_Metallic", 1f);
-					currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+					if (currentObjRenderer != null) {
+						currentObjRenderer.material.SetFloat ("_Metallic", 1f);
+						currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+					}
 				}
 				else if (rayHit.collider.gameObject.CompareTag("Light")){
 					lookingAtLight = true;
@@ -113,8 +117,10 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtInteractiveObject = false;
 					lookingAtInteractive2D = false;
 					lookingAtLight = false;
-					currentObjRenderer.material.SetFloat ("_Metallic", 0f);
-					currentObjRenderer.material.SetFloat ("_Glossiness", 1f);
+					if (currentObjRenderer != null) {
+						currentObjRenderer.material.SetFloat ("_Metallic", 0f);
+						currentObjRenderer.material.SetFloat ("_Glossiness", 1f);
+					}
 				}
 			}
 		}
@@ -195,7 +201,7 @@ public class ObjectInteraction : MonoBehaviour {
 //OBJECT EXAMINATION
 		if (heldObject != null&&heldObject.tag=="InteractiveObject") { //if there's something in the heldObject slot
 
-			if (Input.GetMouseButton (1) || Input.GetKey (KeyCode.LeftShift)) { //if right mouse or left shift held
+			if (Input.GetMouseButton (1)) { //if right mouse held
 			
 				thisOriginalPlayerController.enabled = false;
 				thisCameraControllerPlayer.enabled = false;
