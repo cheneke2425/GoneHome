@@ -103,7 +103,7 @@ public class OriginalPlayerController : MonoBehaviour {
 			is_Moving = charController.velocity.magnitude > 0.15f;
 
 			//footstep audio
-			if (charController.velocity == Vector3.zero) {
+		if (charController.velocity == Vector3.zero) {
 				footstep.Stop ();
 				footstepPlaying = false;
 			} else if (footstepPlaying == false) {
