@@ -107,6 +107,7 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtLocker = true;
 					ObjectName = rayHit.collider.gameObject.name;
 				} else {
+					lookingAtLocker = false;
 					lookingAtInteractiveObject = false;
 					lookingAtInteractive2D = false;
 					lookingAtLight = false;
