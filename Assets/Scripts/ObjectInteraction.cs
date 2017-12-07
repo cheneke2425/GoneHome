@@ -33,6 +33,7 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool lookingAtInteractive2D=false;
 	public bool lookingAtLight = false;
 	public bool lookingAtLocker = false;
+	public bool lookingAtDrawer = false;
 	public string ObjectName;
 
 	public GameObject lightInteracted;
@@ -40,6 +41,7 @@ public class ObjectInteraction : MonoBehaviour {
 	float mouseSensitivity = 50f;
 
 	public bool LockerClicked = false;
+	public bool DrawerClicked = false;
 
 	// Use this for initialization
 	void Start () {
@@ -53,6 +55,7 @@ public class ObjectInteraction : MonoBehaviour {
 		//reset clickedLamp bool
 		clickedLamp = false;
 		LockerClicked = false;
+		DrawerClicked = false;
 		//define a Ray variable, extend from the camera's forward
 		Ray playerRay = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
 
@@ -106,7 +109,11 @@ public class ObjectInteraction : MonoBehaviour {
 					Debug.Log ("Look at Locker");
 					lookingAtLocker = true;
 					ObjectName = rayHit.collider.gameObject.name;
-				} else {
+				} else if (rayHit.collider.gameObject.CompareTag("Drawer")){
+					Debug.Log ("look at drawer");
+					lookingAtDrawer = true;
+					ObjectName = rayHit.collider.gameObject.name;
+				}else {
 					lookingAtInteractiveObject = false;
 					lookingAtInteractive2D = false;
 					lookingAtLight = false;
@@ -176,6 +183,9 @@ public class ObjectInteraction : MonoBehaviour {
 					if (rayHit.collider.gameObject.name == "LockerDoor") {
 						LockerClicked = true;
 						Debug.Log ("clicked locker");
+					} else if (rayHit.collider.gameObject.name == "Drawer"){
+						DrawerClicked = true;
+						Debug.Log ("clicked drawer");
 					} else if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
 						PickupObj (cassette);
 						cassetteInStereo = false;

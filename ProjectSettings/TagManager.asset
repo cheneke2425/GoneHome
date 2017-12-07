@@ -8,6 +8,7 @@ TagManager:
   - Interactive2D
   - Light
   - Locker
+  - Drawer
   layers:
   - Default
   - TransparentFX

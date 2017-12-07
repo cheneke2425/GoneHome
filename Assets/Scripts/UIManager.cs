@@ -19,6 +19,7 @@ public class UIManager : MonoBehaviour {
 
 	public ObjectInteraction objectInteraction;
 	public LockerAnimationControl LockerAnimControl;
+	public DrawerAnimationControl DrawerAnimControl;
 
 	private bool menuOpened = false;
 
@@ -127,12 +128,23 @@ public class UIManager : MonoBehaviour {
 					}
 
 				}
+
 				else if (objectInteraction.lookingAtLocker == true){
 					if(LockerAnimControl.lockerIsOpen == true){
 						UITextBackground.gameObject.SetActive(true);
 						UITextBackground.text = UITextForeground.text = "Close " + objectInteraction.ObjectName;
 					}
 					else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Open " + objectInteraction.ObjectName;
+					}
+				}
+
+				else if (objectInteraction.lookingAtDrawer == true){
+					if(DrawerAnimControl.drawerIsOpen == true){
+						UITextBackground.gameObject.SetActive (true);
+						UITextBackground.text = UITextForeground.text = "Close " + objectInteraction.ObjectName;
+					} else {
 						UITextBackground.gameObject.SetActive(true);
 						UITextBackground.text = UITextForeground.text = "Open " + objectInteraction.ObjectName;
 					}
