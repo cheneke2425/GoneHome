@@ -81,6 +81,8 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtOrigin = true;
 				} else {
 					lookingAtOrigin = false;
+					currentObjRenderer.material.SetFloat ("_Metallic", 0f);
+					currentObjRenderer.material.SetFloat ("_Glossiness", 1f);
 				}
 			} else { //if (heldObject == null) 
 				if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
