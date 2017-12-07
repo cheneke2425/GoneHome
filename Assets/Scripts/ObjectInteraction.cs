@@ -32,12 +32,14 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool lookingAtInteractiveObject=false;
 	public bool lookingAtInteractive2D=false;
 	public bool lookingAtLight = false;
+	public bool lookingAtLocker = false;
 	public string ObjectName;
 
 	public GameObject lightInteracted;
 
 	float mouseSensitivity = 50f;
 
+	public bool LockerClicked = false;
 
 	// Use this for initialization
 	void Start () {
@@ -46,10 +48,11 @@ public class ObjectInteraction : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+	{
 		//reset clickedLamp bool
-		clickedLamp=false;
-
+		clickedLamp = false;
+		LockerClicked = false;
 		//define a Ray variable, extend from the camera's forward
 		Ray playerRay = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
 
@@ -62,12 +65,10 @@ public class ObjectInteraction : MonoBehaviour {
 		// STEP 3: visualize the Raycast
 		Debug.DrawRay (playerRay.origin, playerRay.direction * maxRayDistance, Color.magenta);
 
-		if (Physics.Raycast(playerRay, out rayHit, maxRayDistance))
-		{
+		if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) {
 			hitObject = true;
 
-		}
-		else {
+		} else {
 			hitObject = false;
 		}
 
@@ -76,16 +77,13 @@ public class ObjectInteraction : MonoBehaviour {
 			if (heldObject != null) {
 				if (heldObject.tag == "Interactive2D") {
 					//do nothing
-				}
-				else if (rayHit.collider.gameObject == objectOriginScript.OriginCollider) { //if the player is looking at the object's origin
+				} else if (rayHit.collider.gameObject == objectOriginScript.OriginCollider) { //if the player is looking at the object's origin
 					lookingAtOrigin = true;
 				} else {
 					lookingAtOrigin = false;
 				}
-			} else //if (heldObject == null) 
-			{
-				if (rayHit.collider.gameObject.CompareTag("InteractiveObject"))
-				{ //if true == the hit object has a tag of "InteractiveObject"
+			} else { //if (heldObject == null) 
+				if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
 					lookingAtInteractiveObject = true;
 					ObjectName = rayHit.collider.gameObject.name;
 					currentObjRenderer = rayHit.collider.gameObject.GetComponentInChildren<Renderer> ();
@@ -104,8 +102,11 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtLight = true;
 					ObjectName = rayHit.collider.gameObject.name;
 					lightInteracted = rayHit.collider.gameObject;
-				}
-				else {
+				} else if (rayHit.collider.gameObject.CompareTag("Locker")){
+					Debug.Log ("Look at Locker");
+					lookingAtLocker = true;
+					ObjectName = rayHit.collider.gameObject.name;
+				} else {
 					lookingAtInteractiveObject = false;
 					lookingAtInteractive2D = false;
 					lookingAtLight = false;
@@ -172,15 +173,16 @@ public class ObjectInteraction : MonoBehaviour {
 			} else { //if there's no object in the heldObject slot and left mouse button clicked
 				if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
 //PICKUP OBJECT
-					if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
+					if (rayHit.collider.gameObject.name == "LockerDoor") {
+						LockerClicked = true;
+						Debug.Log ("clicked locker");
+					} else if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
 						PickupObj (cassette);
 						cassetteInStereo = false;
 						coolSchmool.Stop ();
-					}
-					if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
+					} else if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
 						PickupObj (rayHit.collider.gameObject); //run pickup function
-					}
-					else if (rayHit.collider.gameObject.CompareTag("Light")) {
+					} else if (rayHit.collider.gameObject.CompareTag ("Light")) {
 						clickedLamp = true;
 					}
 				}
