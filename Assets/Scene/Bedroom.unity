@@ -1001,6 +1001,11 @@ Prefab:
       propertyPath: LockerAnimControl
       value: 
       objectReference: {fileID: 1069355702}
+    - target: {fileID: 114655956000594522, guid: 62058ff3557e442e784f2c397d33c519,
+        type: 2}
+      propertyPath: DrawerAnimControl
+      value: 
+      objectReference: {fileID: 972396559}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 62058ff3557e442e784f2c397d33c519, type: 2}
   m_IsPrefabParent: 0
@@ -1417,6 +1422,7 @@ GameObject:
   - component: {fileID: 406479036}
   - component: {fileID: 406479038}
   - component: {fileID: 406479037}
+  - component: {fileID: 406479039}
   m_Layer: 0
   m_Name: chest_of_drawers
   m_TagString: Untagged
@@ -1477,6 +1483,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 406479035}
+  m_Mesh: {fileID: 4300006, guid: 429503ef75064423dbae8e9dd8148c6a, type: 3}
+--- !u!64 &406479039
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 406479035}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300006, guid: 429503ef75064423dbae8e9dd8148c6a, type: 3}
 --- !u!1001 &417403284
 Prefab:
@@ -1568,6 +1588,7 @@ GameObject:
   - component: {fileID: 437390742}
   - component: {fileID: 437390744}
   - component: {fileID: 437390743}
+  - component: {fileID: 437390745}
   m_Layer: 0
   m_Name: drawer_2
   m_TagString: Untagged
@@ -1628,6 +1649,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 437390741}
+  m_Mesh: {fileID: 4300000, guid: 429503ef75064423dbae8e9dd8148c6a, type: 3}
+--- !u!64 &437390745
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 437390741}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: 429503ef75064423dbae8e9dd8148c6a, type: 3}
 --- !u!1 &464503623
 GameObject:
@@ -1723,6 +1758,24 @@ MeshCollider:
   m_InflateMesh: 0
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300014, guid: 58df5dea638e8481b9e884fb48430fbc, type: 3}
+--- !u!1 &541423916 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 100000, guid: d020c585b38034da7b5a95c34ec42453, type: 3}
+  m_PrefabInternal: {fileID: 1693505188}
+--- !u!64 &541423920
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 541423916}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
+  m_Mesh: {fileID: 4300000, guid: d020c585b38034da7b5a95c34ec42453, type: 3}
 --- !u!1 &553424125
 GameObject:
   m_ObjectHideFlags: 0
@@ -1946,6 +1999,7 @@ GameObject:
   - component: {fileID: 604029056}
   - component: {fileID: 604029058}
   - component: {fileID: 604029057}
+  - component: {fileID: 604029059}
   m_Layer: 0
   m_Name: drawer_3
   m_TagString: Untagged
@@ -2006,6 +2060,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 604029055}
+  m_Mesh: {fileID: 4300002, guid: 429503ef75064423dbae8e9dd8148c6a, type: 3}
+--- !u!64 &604029059
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 604029055}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300002, guid: 429503ef75064423dbae8e9dd8148c6a, type: 3}
 --- !u!4 &611521089 stripped
 Transform:
@@ -3471,23 +3539,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.42699996
+      value: 0.249
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.336
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -3499,21 +3567,37 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.22576149
+      value: 0.2257615
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.22576147
+      value: 0.2257615
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.22576147
+      value: 0.2257615
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_Name
       value: Drawer
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 44a0dc683af5c4cac97e921a3d5a180c, type: 2}
+    - target: {fileID: 9500000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4c79370bdaac8dd47b010eaab3ce947a, type: 2}
+    - target: {fileID: 100000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
+      propertyPath: m_TagString
+      value: Drawer
+      objectReference: {fileID: 0}
+    - target: {fileID: 9500000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300002, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 44a0dc683af5c4cac97e921a3d5a180c, type: 2}
@@ -3541,7 +3625,43 @@ MeshCollider:
   m_Convex: 0
   m_InflateMesh: 0
   m_SkinWidth: 0.01
-  m_Mesh: {fileID: 0}
+  m_Mesh: {fileID: 4300000, guid: f64d8faba247a4b649a496949b62fdf2, type: 3}
+--- !u!95 &972396558 stripped
+Animator:
+  m_PrefabParentObject: {fileID: 9500000, guid: f64d8faba247a4b649a496949b62fdf2,
+    type: 3}
+  m_PrefabInternal: {fileID: 972396554}
+--- !u!114 &972396559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 972396556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b94465830cba0554d8833cec8ee738ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  checkClickRef: {fileID: 352188926}
+  drawerAnimator: {fileID: 972396558}
+  Drawer: {fileID: 972396556}
+  drawerIsOpen: 0
+--- !u!111 &972396560
+Animation:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 972396556}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: 5f9af5678e7766940bc3d61bfac88bdb, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: c85fdb75b9740974a9be5c4ba417f359, type: 2}
+  - {fileID: 7400000, guid: bb932372c9628e94eab4e9facdd54875, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 0
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!4 &983199922 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: d020c585b38034da7b5a95c34ec42453, type: 3}
@@ -3997,8 +4117,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.3038884, y: 6.6150312, z: 0.165527}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1.3038881, y: 6.6150312, z: 0.3820759}
+  m_Center: {x: 0.0000000017183852, y: 0, z: 0.108274475}
 --- !u!1 &1107458551
 GameObject:
   m_ObjectHideFlags: 0
@@ -5824,6 +5944,7 @@ GameObject:
   - component: {fileID: 1722114384}
   - component: {fileID: 1722114386}
   - component: {fileID: 1722114385}
+  - component: {fileID: 1722114387}
   m_Layer: 0
   m_Name: drawer_1
   m_TagString: Untagged
@@ -5884,6 +6005,20 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1722114383}
+  m_Mesh: {fileID: 4300004, guid: 429503ef75064423dbae8e9dd8148c6a, type: 3}
+--- !u!64 &1722114387
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1722114383}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 0
+  m_InflateMesh: 0
+  m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300004, guid: 429503ef75064423dbae8e9dd8148c6a, type: 3}
 --- !u!1 &1740844136
 GameObject:
