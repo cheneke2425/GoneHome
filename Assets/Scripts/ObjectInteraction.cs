@@ -34,6 +34,8 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool lookingAtLight = false;
 	public bool lookingAtLocker = false;
 	public bool lookingAtDrawer = false;
+	public bool lookingAtSlidyDoor_1 = false;
+	public bool lookingAtSlidyDoor_2 = false;
 	public string ObjectName;
 
 	public GameObject lightInteracted;
@@ -42,6 +44,8 @@ public class ObjectInteraction : MonoBehaviour {
 
 	public bool LockerClicked = false;
 	public bool DrawerClicked = false;
+	public bool SlidyDoor_1Clicked = false;
+	public bool SlidyDoor_2Clicked = false;
 
 	// Use this for initialization
 	void Start () {
@@ -56,6 +60,8 @@ public class ObjectInteraction : MonoBehaviour {
 		clickedLamp = false;
 		LockerClicked = false;
 		DrawerClicked = false;
+		SlidyDoor_1Clicked = false;
+		SlidyDoor_2Clicked = false;
 		//define a Ray variable, extend from the camera's forward
 		Ray playerRay = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
 
@@ -96,9 +102,7 @@ public class ObjectInteraction : MonoBehaviour {
 						currentObjRenderer.material.SetFloat ("_Metallic", 1f);
 						currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
 					}
-				}
-				else if (rayHit.collider.gameObject.CompareTag("Interactive2D"))
-				{
+				} else if (rayHit.collider.gameObject.CompareTag ("Interactive2D")) {
 					lookingAtInteractive2D = true;
 					ObjectName = rayHit.collider.gameObject.name;
 					currentObjRenderer = rayHit.collider.gameObject.GetComponentInChildren<Renderer> ();
@@ -106,18 +110,25 @@ public class ObjectInteraction : MonoBehaviour {
 						currentObjRenderer.material.SetFloat ("_Metallic", 1f);
 						currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
 					}
-				}
-				else if (rayHit.collider.gameObject.CompareTag("Light")){
+				} else if (rayHit.collider.gameObject.CompareTag ("Light")) {
 					lookingAtLight = true;
 					ObjectName = rayHit.collider.gameObject.name;
 					lightInteracted = rayHit.collider.gameObject;
-				} else if (rayHit.collider.gameObject.CompareTag("Locker")){
+				} else if (rayHit.collider.gameObject.CompareTag ("Locker")) {
 					Debug.Log ("Look at Locker");
 					lookingAtLocker = true;
 					ObjectName = rayHit.collider.gameObject.name;
-				} else if (rayHit.collider.gameObject.CompareTag("Drawer")){
+				} else if (rayHit.collider.gameObject.CompareTag ("Drawer")) {
 					Debug.Log ("look at drawer");
 					lookingAtDrawer = true;
+					ObjectName = rayHit.collider.gameObject.name;
+				} else if (rayHit.collider.gameObject.CompareTag ("SlidyDoor_1")) {
+					Debug.Log ("look at slidyDoor_1");
+					lookingAtSlidyDoor_1 = true;
+					ObjectName = rayHit.collider.gameObject.name;
+				} else if (rayHit.collider.gameObject.CompareTag ("SlidyDoor_2")) {
+					Debug.Log ("look at slidyDoor_2");
+					lookingAtSlidyDoor_2 = true;
 					ObjectName = rayHit.collider.gameObject.name;
 				}else {
 					lookingAtInteractiveObject = false;
@@ -125,6 +136,8 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtLight = false;
 					lookingAtLocker = false;
 					lookingAtDrawer = false;
+					lookingAtSlidyDoor_1 = false;
+					lookingAtSlidyDoor_2 = false;
 					if (currentObjRenderer != null) {
 						currentObjRenderer.material.SetFloat ("_Metallic", 0f);
 						currentObjRenderer.material.SetFloat ("_Glossiness", 1f);
@@ -196,7 +209,13 @@ public class ObjectInteraction : MonoBehaviour {
 					} else if (rayHit.collider.gameObject.name == "Drawer"){
 						DrawerClicked = true;
 						Debug.Log ("clicked drawer");
-					} else if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
+					} else if(rayHit.collider.gameObject.name == "SlidyDoor_1"){
+						SlidyDoor_1Clicked = true;
+						Debug.Log ("clicked slidyDoor_1");
+					} else if(rayHit.collider.gameObject.name == "SlidyDoor_2"){
+						SlidyDoor_2Clicked = true;
+						Debug.Log ("clicked slidyDoor_2");
+					}else if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
 						PickupObj (cassette);
 						cassetteInStereo = false;
 						coolSchmool.Stop ();

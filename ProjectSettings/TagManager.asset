@@ -9,6 +9,8 @@ TagManager:
   - Light
   - Locker
   - Drawer
+  - SlidyDoor_1
+  - SlidyDoor_2
   layers:
   - Default
   - TransparentFX
