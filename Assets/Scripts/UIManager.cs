@@ -116,14 +116,28 @@ public class UIManager : MonoBehaviour {
 					UITextBackground.text = UITextForeground.text = "Read " + objectInteraction.ObjectName;
 				}
 				else if (objectInteraction.lookingAtLight == true){
-					if (objectInteraction.lightInteracted.GetComponent<LightSwitch>().lightOn)
+					if (objectInteraction.ObjectName == "Lamp")
 					{
-						UITextBackground.gameObject.SetActive(true);
-						UITextBackground.text = UITextForeground.text = "Turn Off " + objectInteraction.ObjectName;
+						if (objectInteraction.lightInteracted.GetComponent<LightSwitch>().lightOn)
+						{
+							UITextBackground.gameObject.SetActive(true);
+							UITextBackground.text = UITextForeground.text = "Turn Off " + objectInteraction.ObjectName;
+						}
+						else {
+							UITextBackground.gameObject.SetActive(true);
+							UITextBackground.text = UITextForeground.text = "Turn On " + objectInteraction.ObjectName;
+						}
 					}
 					else {
-						UITextBackground.gameObject.SetActive(true);
-						UITextBackground.text = UITextForeground.text = "Turn On " + objectInteraction.ObjectName;
+						if (objectInteraction.lightInteracted.GetComponent<DeskLampSwitch>().lightOn)
+						{
+							UITextBackground.gameObject.SetActive(true);
+							UITextBackground.text = UITextForeground.text = "Turn Off " + objectInteraction.ObjectName;
+						}
+						else {
+							UITextBackground.gameObject.SetActive(true);
+							UITextBackground.text = UITextForeground.text = "Turn On " + objectInteraction.ObjectName;
+						}
 					}
 
 				}
