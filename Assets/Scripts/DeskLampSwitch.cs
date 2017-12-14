@@ -4,32 +4,29 @@ using UnityEngine;
 
 
 
-public class LightSwitch : MonoBehaviour
-{
-
+public class DeskLampSwitch: MonoBehaviour {
+	
 	public ObjectInteraction objectInteraction;
-	Light lightbulb;
+	Transform spotLight;
+	Transform pointLight;
 
 	public bool lightOn;
 
-	void Start()
-	{
-		lightbulb = this.gameObject.GetComponent<Light>();
+	void Start(){
+		spotLight = transform.GetChild(0);
+		pointLight = transform.GetChild(1);
 	}
 
-	void Update()
-	{
-		if (objectInteraction.clickedLamp)
-		{
-			if (lightbulb.enabled == true)
-			{
-				lightbulb.enabled = false;
+	void Update(){
+		if (objectInteraction.clickedLamp) {
+			if (spotLight.gameObject.activeInHierarchy) {
+				spotLight.gameObject.SetActive(false);
+				pointLight.gameObject.SetActive(false);
 				lightOn = false;
 
-			}
-			else if (lightbulb.enabled == false)
-			{
-				lightbulb.enabled = true;
+			} else {
+				spotLight.gameObject.SetActive(true);
+				pointLight.gameObject.SetActive(true);
 				lightOn = true;
 			}
 
