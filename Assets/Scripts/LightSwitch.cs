@@ -4,24 +4,31 @@ using UnityEngine;
 
 
 
-public class LightSwitch : MonoBehaviour {
-	
+public class LightSwitch : MonoBehaviour
+{
+
 	public ObjectInteraction objectInteraction;
 	Light lightbulb;
 
 	public bool lightOn;
 
-	void Start(){
-		lightbulb = this.gameObject.GetComponent<Light> ();
+	void Start()
+	{
+		lightbulb = this.gameObject.GetComponent<Light>();
 	}
 
-	void Update(){
-		if (objectInteraction.clickedLamp) {
-			if (lightbulb.enabled == true) {
+	void Update()
+	{
+		if (objectInteraction.clickedLamp)
+		{
+			if (lightbulb.enabled == true)
+			{
 				lightbulb.enabled = false;
 				lightOn = false;
 
-			} else if (lightbulb.enabled == false) {
+			}
+			else if (lightbulb.enabled == false)
+			{
 				lightbulb.enabled = true;
 				lightOn = true;
 			}
