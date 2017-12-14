@@ -10,7 +10,9 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool hitObject;
 	public bool clickedLamp=false;
 	public bool examining2D = false;
+	public bool highlighted = false;
 	public Renderer currentObjRenderer;
+	public Color currentObjOriginalColor;
 	public GameObject heldObject;
 	public GameObject heldObjectPosition; //position of the object when it's being held
 	public GameObject examineObjectPosition; //position of the object when it's being examined
@@ -82,7 +84,9 @@ public class ObjectInteraction : MonoBehaviour {
 				} else {
 					lookingAtOrigin = false;
 					currentObjRenderer.material.SetFloat ("_Metallic", 0f);
-					currentObjRenderer.material.SetFloat ("_Glossiness", 1f);
+					currentObjRenderer.material.SetFloat ("_Glossiness", 0f);
+					currentObjRenderer.material.color = currentObjOriginalColor;
+					highlighted = false;
 				}
 			} else { //if (heldObject == null) 
 				if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
@@ -90,8 +94,13 @@ public class ObjectInteraction : MonoBehaviour {
 					ObjectName = rayHit.collider.gameObject.name;
 					currentObjRenderer = rayHit.collider.gameObject.GetComponentInChildren<Renderer> ();
 					if (currentObjRenderer != null) {
-						currentObjRenderer.material.SetFloat ("_Metallic", 1f);
-						currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+						if (highlighted == false) {
+							currentObjOriginalColor = currentObjRenderer.material.color;
+							currentObjRenderer.material.SetFloat ("_Metallic", 1f);
+							currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+							currentObjRenderer.material.color = new Color (currentObjOriginalColor.r, currentObjOriginalColor.g, currentObjOriginalColor.b + 0.5f);
+							highlighted = true;
+						}
 					}
 				}
 				else if (rayHit.collider.gameObject.CompareTag("Interactive2D"))
@@ -100,8 +109,13 @@ public class ObjectInteraction : MonoBehaviour {
 					ObjectName = rayHit.collider.gameObject.name;
 					currentObjRenderer = rayHit.collider.gameObject.GetComponentInChildren<Renderer> ();
 					if (currentObjRenderer != null) {
-						currentObjRenderer.material.SetFloat ("_Metallic", 1f);
-						currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+						if (highlighted == false) {
+							currentObjOriginalColor = currentObjRenderer.material.color;
+							currentObjRenderer.material.SetFloat ("_Metallic", 1f);
+							currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+							currentObjRenderer.material.color = new Color (currentObjOriginalColor.r, currentObjOriginalColor.g, currentObjOriginalColor.b + 0.5f);
+							highlighted = true;
+						}
 					}
 				}
 				else if (rayHit.collider.gameObject.CompareTag("Light")){
@@ -119,7 +133,9 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtLight = false;
 					if (currentObjRenderer != null) {
 						currentObjRenderer.material.SetFloat ("_Metallic", 0f);
-						currentObjRenderer.material.SetFloat ("_Glossiness", 1f);
+						currentObjRenderer.material.SetFloat ("_Glossiness", 0f);
+						currentObjRenderer.material.color = currentObjOriginalColor;
+						highlighted = false;
 					}
 				}
 			}
