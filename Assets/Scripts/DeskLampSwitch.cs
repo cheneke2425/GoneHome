@@ -17,25 +17,48 @@ public class DeskLampSwitch: MonoBehaviour {
 		pointLight = transform.GetChild(1);
 	}
 
-	void Update(){
-		if (objectInteraction.clickedLamp) {
-			if (spotLight.gameObject.activeInHierarchy) {
-				spotLight.gameObject.SetActive(false);
-				pointLight.gameObject.SetActive(false);
-				lightOn = false;
-
-			} else {
-				spotLight.gameObject.SetActive(true);
-				pointLight.gameObject.SetActive(true);
-				lightOn = true;
-			}
-
-			if (gameObject.GetComponent<Renderer>().material.IsKeywordEnabled("_EMISSION"))
+	void Update()
+	{
+		if (objectInteraction.clickedRedLamp)
+		{
+			if (gameObject.name == "Light_DeskLampRed")
 			{
-				gameObject.GetComponent<Renderer>().material.DisableKeyword("_EMISSION");
+				if (spotLight.gameObject.activeInHierarchy)
+				{
+					spotLight.gameObject.SetActive(false);
+					pointLight.gameObject.SetActive(false);
+					lightOn = false;
+
+				}
+				else if (spotLight.gameObject.activeInHierarchy == false) {
+					spotLight.gameObject.SetActive(true);
+					pointLight.gameObject.SetActive(true);
+					lightOn = true;
+				}
 			}
 			else {
-				gameObject.GetComponent<Renderer>().material.EnableKeyword("_EMISSION");
+				// do nothing
+			}
+		}
+		else if (objectInteraction.clickedWhiteLamp)
+		{
+			if (gameObject.name == "Light_DeskLampWhite")
+			{
+				if (spotLight.gameObject.activeInHierarchy)
+				{
+					spotLight.gameObject.SetActive(false);
+					pointLight.gameObject.SetActive(false);
+					lightOn = false;
+
+				}
+				else if (spotLight.gameObject.activeInHierarchy == false) {
+					spotLight.gameObject.SetActive(true);
+					pointLight.gameObject.SetActive(true);
+					lightOn = true;
+				}
+			}
+			else {
+				// do nothing
 			}
 		}
 	}

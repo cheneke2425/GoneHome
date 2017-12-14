@@ -9,6 +9,8 @@ public class ObjectInteraction : MonoBehaviour {
 
 	public bool hitObject;
 	public bool clickedLamp=false;
+	public bool clickedRedLamp = false;
+	public bool clickedWhiteLamp = false;
 	public bool examining2D = false;
 	public Renderer currentObjRenderer;
 	public GameObject heldObject;
@@ -58,6 +60,8 @@ public class ObjectInteraction : MonoBehaviour {
 	{
 		//reset clickedLamp bool
 		clickedLamp = false;
+		clickedRedLamp = false;
+		clickedWhiteLamp = false;
 		LockerClicked = false;
 		DrawerClicked = false;
 		SlidyDoor_1Clicked = false;
@@ -222,7 +226,18 @@ public class ObjectInteraction : MonoBehaviour {
 					} else if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
 						PickupObj (rayHit.collider.gameObject); //run pickup function
 					} else if (rayHit.collider.gameObject.CompareTag ("Light")) {
-						clickedLamp = true;
+						if (rayHit.collider.gameObject.name == "Lamp")
+						{
+							clickedLamp = true;
+						}
+						else if (rayHit.collider.gameObject.name == "Light_DeskLampRed")
+						{
+							clickedRedLamp = true;
+						}
+						else if (rayHit.collider.gameObject.name == "Light_DeskLampWhite")
+						{
+							clickedWhiteLamp = true;
+						}
 					}
 				}
 			}
