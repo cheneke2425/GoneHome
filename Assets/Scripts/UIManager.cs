@@ -20,6 +20,8 @@ public class UIManager : MonoBehaviour {
 	public ObjectInteraction objectInteraction;
 	public LockerAnimationControl LockerAnimControl;
 	public DrawerAnimationControl DrawerAnimControl;
+	public SlidyDoor_1AnimationControl SlidyDoor_1AnimControl;
+	public SlidyDoor_2AnimationControl SlidyDoor_2AnimControl;
 
 	private bool menuOpened = false;
 
@@ -162,7 +164,26 @@ public class UIManager : MonoBehaviour {
 						UITextBackground.gameObject.SetActive(true);
 						UITextBackground.text = UITextForeground.text = "Open " + objectInteraction.ObjectName;
 					}
+				}
 
+				else if(objectInteraction.lookingAtSlidyDoor_1 == true){
+					if(SlidyDoor_1AnimControl.slidyDoor_1IsOpen == true){
+						UITextBackground.gameObject.SetActive (true);
+						UITextBackground.text = UITextForeground.text = "Close SlidING Door";
+					} else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Open SlidING Door";
+					}
+				}
+
+				else if(objectInteraction.lookingAtSlidyDoor_2 == true){
+					if(SlidyDoor_2AnimControl.slidyDoor_2IsOpen == true){
+						UITextBackground.gameObject.SetActive (true);
+						UITextBackground.text = UITextForeground.text = "Close SlidING Door";
+					} else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Open SlidING Door";
+					}
 				}
 				else {
 					UITextBackground.gameObject.SetActive(false);
