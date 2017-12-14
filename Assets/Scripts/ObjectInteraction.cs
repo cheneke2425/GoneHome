@@ -137,6 +137,8 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtInteractiveObject = false;
 					lookingAtInteractive2D = false;
 					lookingAtLight = false;
+					lookingAtLocker = false;
+					lookingAtDrawer = false;
 					if (currentObjRenderer != null) {
 						currentObjRenderer.material.SetFloat ("_Metallic", 0f);
 						currentObjRenderer.material.SetFloat ("_Glossiness", 0f);
