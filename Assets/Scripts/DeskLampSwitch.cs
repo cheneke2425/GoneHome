@@ -29,11 +29,15 @@ public class DeskLampSwitch: MonoBehaviour {
 					pointLight.gameObject.SetActive(false);
 					lightOn = false;
 
+					gameObject.GetComponent<Renderer>().materials[2].DisableKeyword("_EMISSION");
+
 				}
 				else if (spotLight.gameObject.activeInHierarchy == false) {
 					spotLight.gameObject.SetActive(true);
 					pointLight.gameObject.SetActive(true);
 					lightOn = true;
+
+					gameObject.GetComponent<Renderer>().materials[2].EnableKeyword("_EMISSION");
 				}
 			}
 			else {
@@ -50,11 +54,15 @@ public class DeskLampSwitch: MonoBehaviour {
 					pointLight.gameObject.SetActive(false);
 					lightOn = false;
 
+					gameObject.GetComponent<Renderer>().materials[2].DisableKeyword("_EMISSION");
+
 				}
 				else if (spotLight.gameObject.activeInHierarchy == false) {
 					spotLight.gameObject.SetActive(true);
 					pointLight.gameObject.SetActive(true);
 					lightOn = true;
+
+					gameObject.GetComponent<Renderer>().materials[2].EnableKeyword("_EMISSION");
 				}
 			}
 			else {
