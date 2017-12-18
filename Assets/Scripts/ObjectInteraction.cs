@@ -38,6 +38,9 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool lookingAtDrawer = false;
 	public bool lookingAtSlidyDoor_1 = false;
 	public bool lookingAtSlidyDoor_2 = false;
+	public bool lookingAtChestDrawer_1 = false;
+	public bool lookingAtChestDrawer_2 = false;
+	public bool lookingAtChestDrawer_3 = false;
 	public string ObjectName;
 
 	public GameObject lightInteracted;
@@ -48,7 +51,9 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool DrawerClicked = false;
 	public bool SlidyDoor_1Clicked = false;
 	public bool SlidyDoor_2Clicked = false;
-
+	public bool ChestDrawer_1Clicked = false;
+	public bool ChestDrawer_2Clicked = false;
+	public bool ChestDrawer_3Clicked = false;
 	// Use this for initialization
 	void Start () {
 		thisOriginalPlayerController = this.gameObject.GetComponent<OriginalPlayerController> ();
@@ -66,6 +71,9 @@ public class ObjectInteraction : MonoBehaviour {
 		DrawerClicked = false;
 		SlidyDoor_1Clicked = false;
 		SlidyDoor_2Clicked = false;
+		ChestDrawer_1Clicked = false;
+		ChestDrawer_2Clicked = false;
+		ChestDrawer_3Clicked = false;
 		//define a Ray variable, extend from the camera's forward
 		Ray playerRay = new Ray (Camera.main.transform.position, Camera.main.transform.forward);
 
@@ -134,7 +142,20 @@ public class ObjectInteraction : MonoBehaviour {
 					Debug.Log ("look at slidyDoor_2");
 					lookingAtSlidyDoor_2 = true;
 					ObjectName = rayHit.collider.gameObject.name;
-				}else {
+				} else if (rayHit.collider.gameObject.CompareTag ("ChestDrawer_1")) {
+					Debug.Log ("Look at ChestDrawer_1");
+					lookingAtChestDrawer_1 = true;
+					ObjectName = rayHit.collider.gameObject.name;
+				} else if (rayHit.collider.gameObject.CompareTag ("ChestDrawer_2")) {
+					Debug.Log ("Look at ChestDrawer_2");
+					lookingAtChestDrawer_2 = true;
+					ObjectName = rayHit.collider.gameObject.name;
+				} else if (rayHit.collider.gameObject.CompareTag ("ChestDrawer_3")) {
+					Debug.Log ("Look at ChestDrawer_3");
+					lookingAtChestDrawer_3 = true;
+					ObjectName = rayHit.collider.gameObject.name;
+				}
+				else {
 					lookingAtInteractiveObject = false;
 					lookingAtInteractive2D = false;
 					lookingAtLight = false;
@@ -142,6 +163,9 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtDrawer = false;
 					lookingAtSlidyDoor_1 = false;
 					lookingAtSlidyDoor_2 = false;
+					lookingAtChestDrawer_1 = false;
+					lookingAtChestDrawer_2 = false;
+					lookingAtChestDrawer_3 = false;
 					if (currentObjRenderer != null) {
 						currentObjRenderer.material.SetFloat ("_Metallic", 0f);
 						currentObjRenderer.material.SetFloat ("_Glossiness", 1f);
@@ -219,7 +243,16 @@ public class ObjectInteraction : MonoBehaviour {
 					} else if(rayHit.collider.gameObject.name == "SlidyDoor_2"){
 						SlidyDoor_2Clicked = true;
 						Debug.Log ("clicked slidyDoor_2");
-					}else if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
+					} else if (rayHit.collider.gameObject.name == "ChestDrawer_1"){
+						ChestDrawer_1Clicked = true;
+						Debug.Log("Clicked chestDrawer_1");
+					} else if (rayHit.collider.gameObject.name == "ChestDrawer_2"){
+						ChestDrawer_2Clicked = true;
+						Debug.Log("Clicked chestDrawer_2");
+					} else if (rayHit.collider.gameObject.name == "ChestDrawer_3"){
+						ChestDrawer_3Clicked = true;
+						Debug.Log("Clicked chestDrawer_3");
+					} else if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
 						PickupObj (cassette);
 						cassetteInStereo = false;
 						coolSchmool.Stop ();
