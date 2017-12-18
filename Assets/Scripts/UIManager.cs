@@ -100,7 +100,10 @@ public class UIManager : MonoBehaviour {
 		if (objectInteraction.hitObject)
 		{
 			if (objectInteraction.heldObject != null) {  //if holding an object
-				if (objectInteraction.lookingAtOrigin == true) {
+				if (objectInteraction.examining2D == true) {
+					UITextBackground.gameObject.SetActive(false);
+				}
+				else if (objectInteraction.lookingAtOrigin == true) {
 					UITextBackground.gameObject.SetActive(true);
 					UITextBackground.text = UITextForeground.text = "Put back " + objectInteraction.ObjectName;
 				}else {

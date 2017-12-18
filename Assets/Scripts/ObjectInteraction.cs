@@ -12,10 +12,12 @@ public class ObjectInteraction : MonoBehaviour {
 	public bool clickedRedLamp = false;
 	public bool clickedWhiteLamp = false;
 	public bool examining2D = false;
+	public bool highlighted = false;
 	public Renderer currentObjRenderer;
 	public GameObject heldObject;
 	public GameObject heldObjectPosition; //position of the object when it's being held
 	public GameObject examineObjectPosition; //position of the object when it's being examined
+	public GameObject examineObjectPosition2D; //position of the object when it's being examined
 	public Vector3 heldObjectOriginPos;
 	public Vector3 heldObjectOriginRot;
 	public ObjectOrigin objectOriginScript;
@@ -89,13 +91,18 @@ public class ObjectInteraction : MonoBehaviour {
 		if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
 			if (heldObject != null) {
 				if (heldObject.tag == "Interactive2D") {
-					//do nothing
+					currentObjRenderer.material.SetFloat ("_Metallic", 0f);
+					currentObjRenderer.material.SetFloat ("_Glossiness", 0f);
+					currentObjRenderer.material.color = Color.white;
+					highlighted = false;
 				} else if (rayHit.collider.gameObject == objectOriginScript.OriginCollider) { //if the player is looking at the object's origin
 					lookingAtOrigin = true;
 				} else {
 					lookingAtOrigin = false;
 					currentObjRenderer.material.SetFloat ("_Metallic", 0f);
-					currentObjRenderer.material.SetFloat ("_Glossiness", 1f);
+					currentObjRenderer.material.SetFloat ("_Glossiness", 0f);
+					currentObjRenderer.material.color = Color.white;
+					highlighted = false;
 				}
 			} else { //if (heldObject == null) 
 				if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
@@ -103,16 +110,24 @@ public class ObjectInteraction : MonoBehaviour {
 					ObjectName = rayHit.collider.gameObject.name;
 					currentObjRenderer = rayHit.collider.gameObject.GetComponentInChildren<Renderer> ();
 					if (currentObjRenderer != null) {
-						currentObjRenderer.material.SetFloat ("_Metallic", 1f);
-						currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+						if (highlighted == false) {
+							currentObjRenderer.material.SetFloat ("_Metallic", 1f);
+							currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+							currentObjRenderer.material.color = new Color (1, 1, 1 + 0.6f);
+							highlighted = true;
+						}
 					}
 				} else if (rayHit.collider.gameObject.CompareTag ("Interactive2D")) {
 					lookingAtInteractive2D = true;
 					ObjectName = rayHit.collider.gameObject.name;
 					currentObjRenderer = rayHit.collider.gameObject.GetComponentInChildren<Renderer> ();
 					if (currentObjRenderer != null) {
-						currentObjRenderer.material.SetFloat ("_Metallic", 1f);
-						currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+						if (highlighted == false) {
+							currentObjRenderer.material.SetFloat ("_Metallic", 1f);
+							currentObjRenderer.material.SetFloat ("_Glossiness", 0.6f);
+							currentObjRenderer.material.color = new Color (1, 1, 1 + 0.6f);
+							highlighted = true;
+						}
 					}
 				} else if (rayHit.collider.gameObject.CompareTag ("Light")) {
 					lookingAtLight = true;
@@ -134,7 +149,7 @@ public class ObjectInteraction : MonoBehaviour {
 					Debug.Log ("look at slidyDoor_2");
 					lookingAtSlidyDoor_2 = true;
 					ObjectName = rayHit.collider.gameObject.name;
-				}else {
+				} else {
 					lookingAtInteractiveObject = false;
 					lookingAtInteractive2D = false;
 					lookingAtLight = false;
@@ -144,9 +159,25 @@ public class ObjectInteraction : MonoBehaviour {
 					lookingAtSlidyDoor_2 = false;
 					if (currentObjRenderer != null) {
 						currentObjRenderer.material.SetFloat ("_Metallic", 0f);
-						currentObjRenderer.material.SetFloat ("_Glossiness", 1f);
+						currentObjRenderer.material.SetFloat ("_Glossiness", 0f);
+						currentObjRenderer.material.color = Color.white;
+						highlighted = false;
 					}
 				}
+			}
+		} else {
+			lookingAtInteractiveObject = false;
+			lookingAtInteractive2D = false;
+			lookingAtLight = false;
+			lookingAtLocker = false;
+			lookingAtDrawer = false;
+			lookingAtSlidyDoor_1 = false;
+			lookingAtSlidyDoor_2 = false;
+			if (currentObjRenderer != null) {
+				currentObjRenderer.material.SetFloat ("_Metallic", 0f);
+				currentObjRenderer.material.SetFloat ("_Glossiness", 0f);
+				currentObjRenderer.material.color = Color.white;
+				highlighted = false;
 			}
 		}
 
@@ -166,8 +197,8 @@ public class ObjectInteraction : MonoBehaviour {
 					thisCameraControllerPlayer.enabled = false;
 					thisCameraControllerCamera.enabled = false;
 					//display image either here or in UI
-					rayHit.collider.gameObject.transform.position = examineObjectPosition.transform.position;
-					rayHit.collider.gameObject.transform.up = Camera.main.transform.forward;
+					rayHit.collider.gameObject.transform.position = examineObjectPosition2D.transform.position;
+					rayHit.collider.gameObject.transform.eulerAngles = examineObjectPosition2D.transform.eulerAngles;
 				} else if (examining2D == true) {
 					examining2D = false;
 					heldObject = null; //clear the heldObject slot
