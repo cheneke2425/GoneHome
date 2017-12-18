@@ -5,13 +5,13 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SlidyDoor_1
+  m_Name: ChestDrawer_2
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
-    m_StateMachine: {fileID: 1107337265696293822}
+    m_StateMachine: {fileID: 1107794264339153886}
     m_Mask: {fileID: 0}
     m_Motions: []
     m_Behaviours: []
@@ -21,13 +21,13 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
---- !u!1102 &1102037269062051764
+--- !u!1102 &1102402391246719348
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SlidyDoor_1CloseAnim
+  m_Name: ChestDrawer_2Close
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -39,18 +39,18 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 201e2dc566a063c48b0e0f4044834c0a, type: 2}
+  m_Motion: {fileID: 7400000, guid: a46cd07c0fe9b9c488456d696b5964af, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
---- !u!1102 &1102106596663364280
+--- !u!1102 &1102559430117582206
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SlidyDoor_1Idle
+  m_Name: ChestDrawer_2Idle
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -62,18 +62,18 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 79f68d13931099048b5f2993d3b8b7d4, type: 2}
+  m_Motion: {fileID: 7400000, guid: fecd4889f7573e8419f08a362c306c89, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
---- !u!1102 &1102536241269898128
+--- !u!1102 &1102765706139234872
 AnimatorState:
   serializedVersion: 5
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: SlidyDoor_1OpenAnim
+  m_Name: ChestDrawer_2Open
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -85,12 +85,12 @@ AnimatorState:
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: d50799aae0643e448824375eaf7cd8cc, type: 2}
+  m_Motion: {fileID: 7400000, guid: 8901761f927f3514fbed2ae289c44ff0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
---- !u!1107 &1107337265696293822
+--- !u!1107 &1107794264339153886
 AnimatorStateMachine:
   serializedVersion: 5
   m_ObjectHideFlags: 1
@@ -99,13 +99,13 @@ AnimatorStateMachine:
   m_Name: Base Layer
   m_ChildStates:
   - serializedVersion: 1
-    m_State: {fileID: 1102106596663364280}
+    m_State: {fileID: 1102559430117582206}
     m_Position: {x: 200, y: 0, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1102536241269898128}
-    m_Position: {x: 240, y: 60, z: 0}
+    m_State: {fileID: 1102765706139234872}
+    m_Position: {x: 235, y: 65, z: 0}
   - serializedVersion: 1
-    m_State: {fileID: 1102037269062051764}
+    m_State: {fileID: 1102402391246719348}
     m_Position: {x: 270, y: 130, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
@@ -116,4 +116,4 @@ AnimatorStateMachine:
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
-  m_DefaultState: {fileID: 1102106596663364280}
+  m_DefaultState: {fileID: 1102559430117582206}

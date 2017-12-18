@@ -11,6 +11,9 @@ TagManager:
   - Drawer
   - SlidyDoor_1
   - SlidyDoor_2
+  - ChestDrawer_1
+  - ChestDrawer_2
+  - ChestDrawer_3
   layers:
   - Default
   - TransparentFX

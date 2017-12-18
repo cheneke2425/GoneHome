@@ -22,6 +22,9 @@ public class UIManager : MonoBehaviour {
 	public DrawerAnimationControl DrawerAnimControl;
 	public SlidyDoor_1AnimationControl SlidyDoor_1AnimControl;
 	public SlidyDoor_2AnimationControl SlidyDoor_2AnimControl;
+	public ChestDrawer_1AnimControl ChestDrawer_1AC;
+	public ChestDrawer_2AnimControl ChestDrawer_2AC;
+	public ChestDrawer_3AnimControl ChestDrawer_3AC;
 
 	private bool menuOpened = false;
 
@@ -172,20 +175,50 @@ public class UIManager : MonoBehaviour {
 				else if(objectInteraction.lookingAtSlidyDoor_1 == true){
 					if(SlidyDoor_1AnimControl.slidyDoor_1IsOpen == true){
 						UITextBackground.gameObject.SetActive (true);
-						UITextBackground.text = UITextForeground.text = "Close SlidING Door";
+						UITextBackground.text = UITextForeground.text = "Close Sliding Door";
 					} else {
 						UITextBackground.gameObject.SetActive(true);
-						UITextBackground.text = UITextForeground.text = "Open SlidING Door";
+						UITextBackground.text = UITextForeground.text = "Open Sliding Door";
 					}
 				}
 
 				else if(objectInteraction.lookingAtSlidyDoor_2 == true){
 					if(SlidyDoor_2AnimControl.slidyDoor_2IsOpen == true){
 						UITextBackground.gameObject.SetActive (true);
-						UITextBackground.text = UITextForeground.text = "Close SlidING Door";
+						UITextBackground.text = UITextForeground.text = "Close Sliding Door";
 					} else {
 						UITextBackground.gameObject.SetActive(true);
-						UITextBackground.text = UITextForeground.text = "Open SlidING Door";
+						UITextBackground.text = UITextForeground.text = "Open Sliding Door";
+					}
+				}
+
+				else if(objectInteraction.lookingAtChestDrawer_1 == true){
+					if(ChestDrawer_1AC.ChestDrawer_1isOpen == true){
+						UITextBackground.gameObject.SetActive (true);
+						UITextBackground.text = UITextForeground.text = "Close chest drawer";
+					} else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Open chest drawer";
+					}
+				}
+
+				else if(objectInteraction.lookingAtChestDrawer_2 == true){
+					if(ChestDrawer_2AC.ChestDrawer_2isOpen == true){
+						UITextBackground.gameObject.SetActive (true);
+						UITextBackground.text = UITextForeground.text = "Close chest drawer";
+					} else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Open chest drawer";
+					}
+				}
+
+				else if(objectInteraction.lookingAtChestDrawer_3 == true){
+					if(ChestDrawer_3AC.ChestDrawer_3isOpen == true){
+						UITextBackground.gameObject.SetActive (true);
+						UITextBackground.text = UITextForeground.text = "Close chest drawer";
+					} else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Open chest drawer";
 					}
 				}
 				else {
