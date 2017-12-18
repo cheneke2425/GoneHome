@@ -212,9 +212,10 @@ public class ObjectInteraction : MonoBehaviour {
 				heldObject.transform.SetParent (null); //unparent the object from the player
 				if (Physics.Raycast (playerRay, out rayHit, maxRayDistance)) { //if true == an object has been hit
 //PUT TAPE IN STEREO
-					if (heldObject.name == "Cassette" && rayHit.collider.gameObject.name == "stereo") {
+					if (heldObject.name == "Cassette" && rayHit.collider.gameObject.name == "Furniture_Stereo") {
 						cassette = heldObject;
 						heldObject.transform.position = rayHit.collider.gameObject.transform.position;
+						heldObject.GetComponent<MeshRenderer>().enabled = false;
 						cassetteInStereo = true;
 						coolSchmool.Play ();
 						heldObject = null; //clear the heldObject slot
@@ -250,9 +251,10 @@ public class ObjectInteraction : MonoBehaviour {
 					} else if(rayHit.collider.gameObject.name == "SlidyDoor_2"){
 						SlidyDoor_2Clicked = true;
 						Debug.Log ("clicked slidyDoor_2");
-					}else if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
+					}else if (rayHit.collider.gameObject.name == "Furniture_Stereo" && cassetteInStereo == true) {
 						PickupObj (cassette);
 						cassetteInStereo = false;
+						heldObject.GetComponent<MeshRenderer>().enabled = true;
 						coolSchmool.Stop ();
 					} else if (rayHit.collider.gameObject.CompareTag ("InteractiveObject")) { //if true == the hit object has a tag of "InteractiveObject"
 						PickupObj (rayHit.collider.gameObject); //run pickup function
