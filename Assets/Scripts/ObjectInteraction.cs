@@ -149,7 +149,7 @@ public class ObjectInteraction : MonoBehaviour {
 					Debug.Log ("look at slidyDoor_2");
 					lookingAtSlidyDoor_2 = true;
 					ObjectName = rayHit.collider.gameObject.name;
-				}else {
+				} else {
 					lookingAtInteractiveObject = false;
 					lookingAtInteractive2D = false;
 					lookingAtLight = false;
@@ -164,6 +164,20 @@ public class ObjectInteraction : MonoBehaviour {
 						highlighted = false;
 					}
 				}
+			}
+		} else {
+			lookingAtInteractiveObject = false;
+			lookingAtInteractive2D = false;
+			lookingAtLight = false;
+			lookingAtLocker = false;
+			lookingAtDrawer = false;
+			lookingAtSlidyDoor_1 = false;
+			lookingAtSlidyDoor_2 = false;
+			if (currentObjRenderer != null) {
+				currentObjRenderer.material.SetFloat ("_Metallic", 0f);
+				currentObjRenderer.material.SetFloat ("_Glossiness", 0f);
+				currentObjRenderer.material.color = Color.white;
+				highlighted = false;
 			}
 		}
 
