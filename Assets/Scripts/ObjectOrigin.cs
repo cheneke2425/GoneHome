@@ -15,15 +15,18 @@ public class ObjectOrigin : MonoBehaviour {
 	public Vector3 ObjectOriginRot;
 	public bool atOrigin=true;
 	public GameObject OriginCollider;
+	public Vector3 thisScale;
 
 	// Use this for initialization
 	void Start () {
 		ObjectOriginPos = this.transform.position;
 		ObjectOriginRot = this.transform.eulerAngles;
+		thisScale = this.gameObject.transform.lossyScale;
 	}
 	
 	// Update is called once per frame
 	void Update () {
+		this.gameObject.transform.localScale = thisScale;
 		if ((this.transform.position) == ObjectOriginPos) {
 			atOrigin = true;
 		} else {
