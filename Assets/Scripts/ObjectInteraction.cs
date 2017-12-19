@@ -284,7 +284,7 @@ public class ObjectInteraction : MonoBehaviour {
 					} else if (rayHit.collider.gameObject.name == "ChestDrawer_3"){
 						ChestDrawer_3Clicked = true;
 						Debug.Log("Clicked chestDrawer_3");
-					} else if (rayHit.collider.gameObject.name == "stereo" && cassetteInStereo == true) {
+					} else if (rayHit.collider.gameObject.name == "Furniture_Stereo" && cassetteInStereo == true) {
 						PickupObj (cassette);
 						cassetteInStereo = false;
 						heldObject.GetComponent<MeshRenderer>().enabled = true;
