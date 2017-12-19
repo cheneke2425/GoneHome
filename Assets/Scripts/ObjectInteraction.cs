@@ -336,10 +336,8 @@ public class ObjectInteraction : MonoBehaviour {
 	void PickupObj(GameObject currentObject){
 		heldObject=currentObject;
 		objectOriginScript = heldObject.GetComponent<ObjectOrigin> ();
-		if (objectOriginScript.atOrigin == true) { //this keeps the origin from being set if you pick up the object from a thrown position
-			heldObjectOriginPos = objectOriginScript.ObjectOriginPos;
-			heldObjectOriginRot = objectOriginScript.ObjectOriginRot;
-		}
+		heldObjectOriginPos = objectOriginScript.ObjectOriginPos;
+		heldObjectOriginRot = objectOriginScript.ObjectOriginRot;
 		rb = heldObject.GetComponent<Rigidbody> ();
 		rb.isKinematic = true;
 		heldObject.transform.position = heldObjectPosition.transform.position;
