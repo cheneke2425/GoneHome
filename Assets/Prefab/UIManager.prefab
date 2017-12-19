@@ -54,8 +54,15 @@ MonoBehaviour:
   Menu: {fileID: 0}
   Player: {fileID: 0}
   Camera: {fileID: 0}
+  ESCMenu: {fileID: 0}
+  UICue: {fileID: 0}
   ItemsPage: {fileID: 0}
   MapPage: {fileID: 0}
   JournalsPage: {fileID: 0}
   UITextBackground: {fileID: 0}
   UITextForeground: {fileID: 0}
+  objectInteraction: {fileID: 0}
+  LockerAnimControl: {fileID: 0}
+  DrawerAnimControl: {fileID: 0}
+  SlidyDoor_1AnimControl: {fileID: 0}
+  SlidyDoor_2AnimControl: {fileID: 0}
