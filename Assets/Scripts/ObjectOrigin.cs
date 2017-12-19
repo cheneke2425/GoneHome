@@ -21,7 +21,7 @@ public class ObjectOrigin : MonoBehaviour {
 	void Start () {
 		ObjectOriginPos = this.transform.position;
 		ObjectOriginRot = this.transform.eulerAngles;
-		thisScale = this.gameObject.transform.lossyScale;
+		thisScale = this.gameObject.transform.localScale;
 	}
 	
 	// Update is called once per frame
