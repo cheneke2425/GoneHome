@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 
 	public Transform Menu;
 	public Transform Player;
 	public Transform Camera;
+	public Transform ESCMenu;
+	public Transform UICue;
 
 	public Transform ItemsPage;
 	public Transform MapPage;
@@ -22,6 +25,9 @@ public class UIManager : MonoBehaviour {
 	public DrawerAnimationControl DrawerAnimControl;
 	public SlidyDoor_1AnimationControl SlidyDoor_1AnimControl;
 	public SlidyDoor_2AnimationControl SlidyDoor_2AnimControl;
+	public ChestDrawer_1AnimControl ChestDrawer_1AC;
+	public ChestDrawer_2AnimControl ChestDrawer_2AC;
+	public ChestDrawer_3AnimControl ChestDrawer_3AC;
 
 	private bool menuOpened = false;
 
@@ -32,6 +38,8 @@ public class UIManager : MonoBehaviour {
 		Cursor.visible = false;
 
 		objectInteraction = Player.gameObject.GetComponent<ObjectInteraction> ();
+
+		StartCoroutine(DisableUICueAfterSeconds(6f));
 		
 	}
 
@@ -76,7 +84,8 @@ public class UIManager : MonoBehaviour {
 				CloseMenu();
 
 			}
-		} else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown("3"))
+		}
+		else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown("3"))
 		{
 			if (JournalsPage.gameObject.activeInHierarchy == false)
 			{
@@ -94,6 +103,16 @@ public class UIManager : MonoBehaviour {
 
 				CloseMenu();
 
+			}
+		}
+		else if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (ESCMenu.gameObject.activeInHierarchy == false)
+			{
+				OpenESCMenu();
+			}
+			else {
+				CloseESCMenu();
 			}
 		}
 
@@ -172,20 +191,50 @@ public class UIManager : MonoBehaviour {
 				else if(objectInteraction.lookingAtSlidyDoor_1 == true){
 					if(SlidyDoor_1AnimControl.slidyDoor_1IsOpen == true){
 						UITextBackground.gameObject.SetActive (true);
-						UITextBackground.text = UITextForeground.text = "Close SlidING Door";
+						UITextBackground.text = UITextForeground.text = "Close Sliding Door";
 					} else {
 						UITextBackground.gameObject.SetActive(true);
-						UITextBackground.text = UITextForeground.text = "Open SlidING Door";
+						UITextBackground.text = UITextForeground.text = "Open Sliding Door";
 					}
 				}
 
 				else if(objectInteraction.lookingAtSlidyDoor_2 == true){
 					if(SlidyDoor_2AnimControl.slidyDoor_2IsOpen == true){
 						UITextBackground.gameObject.SetActive (true);
-						UITextBackground.text = UITextForeground.text = "Close SlidING Door";
+						UITextBackground.text = UITextForeground.text = "Close Sliding Door";
 					} else {
 						UITextBackground.gameObject.SetActive(true);
-						UITextBackground.text = UITextForeground.text = "Open SlidING Door";
+						UITextBackground.text = UITextForeground.text = "Open Sliding Door";
+					}
+				}
+
+				else if(objectInteraction.lookingAtChestDrawer_1 == true){
+					if(ChestDrawer_1AC.ChestDrawer_1isOpen == true){
+						UITextBackground.gameObject.SetActive (true);
+						UITextBackground.text = UITextForeground.text = "Close chest drawer";
+					} else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Open chest drawer";
+					}
+				}
+
+				else if(objectInteraction.lookingAtChestDrawer_2 == true){
+					if(ChestDrawer_2AC.ChestDrawer_2isOpen == true){
+						UITextBackground.gameObject.SetActive (true);
+						UITextBackground.text = UITextForeground.text = "Close chest drawer";
+					} else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Open chest drawer";
+					}
+				}
+
+				else if(objectInteraction.lookingAtChestDrawer_3 == true){
+					if(ChestDrawer_3AC.ChestDrawer_3isOpen == true){
+						UITextBackground.gameObject.SetActive (true);
+						UITextBackground.text = UITextForeground.text = "Close chest drawer";
+					} else {
+						UITextBackground.gameObject.SetActive(true);
+						UITextBackground.text = UITextForeground.text = "Open chest drawer";
 					}
 				}
 				else {
@@ -230,4 +279,46 @@ public class UIManager : MonoBehaviour {
 
 		menuOpened = false;
 	}
+
+	public void OpenESCMenu()
+	{
+		ESCMenu.gameObject.SetActive(true);
+		Time.timeScale = 0; //Pause time in the game.
+		Player.gameObject.GetComponent<CameraController>().enabled = false;
+		Camera.gameObject.GetComponent<CameraController>().enabled = false;
+		Player.gameObject.GetComponent<ObjectInteraction>().enabled = false;
+
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+
+		menuOpened = true;
+	}
+
+	public void CloseESCMenu()
+	{
+		ESCMenu.gameObject.SetActive(false);
+		Player.gameObject.SetActive(true);
+		Time.timeScale = 1; //Resume time in the game.
+		Player.gameObject.GetComponent<CameraController>().enabled = true;
+		Camera.gameObject.GetComponent<CameraController>().enabled = true;
+		Player.gameObject.GetComponent<ObjectInteraction>().enabled = true;
+
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+
+		menuOpened = false;
+	}
+
+	public void RestartGame()
+	{
+		SceneManager.LoadScene("Bedroom");
+	}
+
+	IEnumerator DisableUICueAfterSeconds(float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		UICue.gameObject.SetActive(false);
+
+	}
+
 }
