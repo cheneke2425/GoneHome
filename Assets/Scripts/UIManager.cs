@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour {
 
 	public Transform Menu;
 	public Transform Player;
 	public Transform Camera;
+	public Transform ESCMenu;
+	public Transform UICue;
 
 	public Transform ItemsPage;
 	public Transform MapPage;
@@ -32,6 +35,8 @@ public class UIManager : MonoBehaviour {
 		Cursor.visible = false;
 
 		objectInteraction = Player.gameObject.GetComponent<ObjectInteraction> ();
+
+		StartCoroutine(DisableUICueAfterSeconds(6f));
 		
 	}
 
@@ -76,7 +81,8 @@ public class UIManager : MonoBehaviour {
 				CloseMenu();
 
 			}
-		} else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown("3"))
+		}
+		else if (Input.GetKeyDown(KeyCode.J) || Input.GetKeyDown("3"))
 		{
 			if (JournalsPage.gameObject.activeInHierarchy == false)
 			{
@@ -94,6 +100,16 @@ public class UIManager : MonoBehaviour {
 
 				CloseMenu();
 
+			}
+		}
+		else if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (ESCMenu.gameObject.activeInHierarchy == false)
+			{
+				OpenESCMenu();
+			}
+			else {
+				CloseESCMenu();
 			}
 		}
 
@@ -230,4 +246,46 @@ public class UIManager : MonoBehaviour {
 
 		menuOpened = false;
 	}
+
+	public void OpenESCMenu()
+	{
+		ESCMenu.gameObject.SetActive(true);
+		Time.timeScale = 0; //Pause time in the game.
+		Player.gameObject.GetComponent<CameraController>().enabled = false;
+		Camera.gameObject.GetComponent<CameraController>().enabled = false;
+		Player.gameObject.GetComponent<ObjectInteraction>().enabled = false;
+
+		Cursor.lockState = CursorLockMode.None;
+		Cursor.visible = true;
+
+		menuOpened = true;
+	}
+
+	public void CloseESCMenu()
+	{
+		ESCMenu.gameObject.SetActive(false);
+		Player.gameObject.SetActive(true);
+		Time.timeScale = 1; //Resume time in the game.
+		Player.gameObject.GetComponent<CameraController>().enabled = true;
+		Camera.gameObject.GetComponent<CameraController>().enabled = true;
+		Player.gameObject.GetComponent<ObjectInteraction>().enabled = true;
+
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
+
+		menuOpened = false;
+	}
+
+	public void RestartGame()
+	{
+		SceneManager.LoadScene("Bedroom");
+	}
+
+	IEnumerator DisableUICueAfterSeconds(float seconds)
+	{
+		yield return new WaitForSeconds(seconds);
+		UICue.gameObject.SetActive(false);
+
+	}
+
 }
